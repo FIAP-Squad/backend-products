@@ -1,5 +1,4 @@
-import { ObjectId } from 'mongodb'
-import { MongoDBHelper } from '.'
+import { prismaClient } from '@/infrastructure/repositories/prismaClient'
 import { type Product } from '@/core/entities'
 import { type AddProductParams } from '@/core/ports/driving/services'
 import {
@@ -18,30 +17,23 @@ export class ProductRepository implements
   IDeleteProductRepository,
   IUpdateProductRepository {
   async add (params: AddProductParams): Promise<void> {
-    const collection = MongoDBHelper.getCollection('products')
-    await collection.insertOne(params)
+    await prismaClient.product.create({ data: params })
   }
 
   async loadAll (filter: any): Promise<Product[]> {
-    const collection = MongoDBHelper.getCollection('products')
-    const products = await collection.find<Product>(filter).toArray()
-    return products.map(product => MongoDBHelper.map(product))
+    return await prismaClient.product.findMany({ where: filter })
   }
 
-  async loadById (id: string): Promise<Product> {
-    const collection = MongoDBHelper.getCollection('products')
-    const product = collection.findOne<Product>({ _id: { $eq: new ObjectId(id) } })
-    return product && MongoDBHelper.map(product)
+  async loadById (id: string): Promise<Product | null> {
+    return await prismaClient.product.findUnique({ where: { id } })
   }
 
   async delete (id: string): Promise<void> {
-    const collection = MongoDBHelper.getCollection('products')
-    await collection.deleteOne({ _id: new ObjectId(id) })
+    await prismaClient.product.delete({ where: { id } })
   }
 
   async update (params: UpdateProductParams): Promise<void> {
-    const collection = MongoDBHelper.getCollection('products')
     const { id, body } = params
-    await collection.updateOne({ _id: new ObjectId(id) }, { $set: { ...body } })
+    await prismaClient.product.update({ where: { id }, data: { ...body } })
   }
 }
