@@ -13,7 +13,7 @@ import {
 import { MongoDBHelper } from '@/infrastructure/repositories'
 import { ObjectId } from 'mongodb'
 
-export class OrderMongoRepository implements
+export class OrderRepository implements
   IAddOrderRepository,
   IUpdateOrderRepository,
   ILoadOrdersRepository {

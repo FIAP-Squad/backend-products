@@ -11,7 +11,7 @@ import {
   type UpdateProductParams
 } from '@/core/ports/driven'
 
-export class ProductMongoRepository implements
+export class ProductRepository implements
   IAddProductRepository,
   ILoadProductsRepository,
   ILoadProductByIdRepository,
