@@ -1,9 +1,9 @@
 import { LoadProducts } from '@/application/services'
-import { type Product } from '@/core/entities'
+import { type WithId, type Product } from '@/core/entities'
 import { type ILoadProducts } from '@/core/ports/driving/services'
 import { type ILoadProductsRepository } from '@/core/ports/driven'
 
-const mockProducts = (): Product[] => ([
+const mockProducts = (): Array<WithId<Product>> => ([
   {
     id: 'any_id',
     category: 'any_category',

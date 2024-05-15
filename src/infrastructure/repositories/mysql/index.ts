@@ -1,4 +1,3 @@
-export * from './MongoDBHelper'
 export * from './LogRepository'
 export * from './OrderRepository'
 export * from './AccountRepository'

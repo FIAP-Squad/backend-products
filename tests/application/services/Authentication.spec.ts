@@ -1,5 +1,5 @@
 import { Authentication } from '@/application/services'
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 import { type AuthenticationParams } from '@/core/ports/driving/services'
 import {
   type IEncrypter,
@@ -8,12 +8,12 @@ import {
   type ILoadAccountByEmailRepository
 } from '@/core/ports/driven'
 
-const mockAccount = (): Account => ({
+const mockAccount = (): WithId<Account> => ({
+  id: 'any_id',
   name: 'any_name',
   cpf: 'any_cpf',
   email: 'any_email@mail.com',
-  password: 'hashed_password',
-  id: 'any_id'
+  password: 'hashed_password'
 })
 
 const mockAuthentication = (): AuthenticationParams => ({
@@ -23,7 +23,7 @@ const mockAuthentication = (): AuthenticationParams => ({
 
 const mockLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements ILoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<Account> {
+    async loadByEmail (email: string): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }

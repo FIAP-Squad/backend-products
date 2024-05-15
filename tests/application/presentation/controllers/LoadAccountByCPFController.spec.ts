@@ -1,4 +1,4 @@
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
 import { LoadAccountByCPFController } from '@/application/presentation/controllers'
@@ -14,7 +14,7 @@ const mockRequest = (): IHTTPRequest => ({
   }
 })
 
-const mockAccount = (): Account => ({
+const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
   cpf: 'valid_cpf',
   name: 'valid_name',
@@ -24,7 +24,7 @@ const mockAccount = (): Account => ({
 
 const mockLoadAccountByCpf = (): ILoadAccountByCPF => {
   class LoadAccountByCpfStub implements ILoadAccountByCPF {
-    async loadByCpf (cpf: string): Promise<Account> {
+    async loadByCpf (cpf: string): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }

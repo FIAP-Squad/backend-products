@@ -3,7 +3,6 @@ import { type Product } from '@/core/entities'
 import { type AddProductParams } from '@/core/ports/driving/services'
 import {
   type IAddProductRepository,
-  type ILoadProductByIdRepository,
   type ILoadProductsRepository,
   type IDeleteProductRepository,
   type IUpdateProductRepository,
@@ -13,7 +12,6 @@ import {
 export class ProductRepository implements
   IAddProductRepository,
   ILoadProductsRepository,
-  ILoadProductByIdRepository,
   IDeleteProductRepository,
   IUpdateProductRepository {
   async add (params: AddProductParams): Promise<void> {
@@ -22,10 +20,6 @@ export class ProductRepository implements
 
   async loadAll (filter: any): Promise<Product[]> {
     return await prismaClient.product.findMany({ where: filter })
-  }
-
-  async loadById (id: string): Promise<Product | null> {
-    return await prismaClient.product.findUnique({ where: { id } })
   }
 
   async delete (id: string): Promise<void> {

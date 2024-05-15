@@ -1,5 +1,5 @@
 export type Item = {
-  id: string
+  orderId: string
   totalItems: number
   unitPrice: number
   amount: number
@@ -12,5 +12,5 @@ export type Order = {
   createdAt: Date
   updatedAt: Date
   amount: number
-  products: Item[]
+  items: Item[]
 }

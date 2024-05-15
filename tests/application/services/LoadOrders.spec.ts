@@ -7,9 +7,9 @@ const mockOrders = (): Order[] => ([
   {
     number: 1,
     customer: 'any_customer',
-    products: [
+    items: [
       {
-        id: '65aa013deca75aaae89c3a1b',
+        orderId: '65aa013deca75aaae89c3a1b',
         totalItems: 2,
         unitPrice: 2000,
         amount: 4000
@@ -23,9 +23,9 @@ const mockOrders = (): Order[] => ([
   {
     number: 2,
     customer: 'other_customer',
-    products: [
+    items: [
       {
-        id: '65aa013deca75aaae89c3a1b',
+        orderId: '65aa013deca75aaae89c3a1b',
         totalItems: 2,
         unitPrice: 2000,
         amount: 4000

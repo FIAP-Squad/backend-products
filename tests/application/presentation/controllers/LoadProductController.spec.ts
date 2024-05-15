@@ -10,7 +10,6 @@ import {
 
 const mockProducts = (): Product[] => ([
   {
-    id: 'any_id',
     category: 'any_category',
     name: 'any_name',
     price: 'any_price',
@@ -18,7 +17,6 @@ const mockProducts = (): Product[] => ([
     image: 'any_image'
   },
   {
-    id: 'other_id',
     category: 'other_category',
     name: 'other_name',
     price: 'other_price',

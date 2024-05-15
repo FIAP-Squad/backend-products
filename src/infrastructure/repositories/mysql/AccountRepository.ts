@@ -1,12 +1,12 @@
 import { prismaClient } from '@/infrastructure/repositories/prismaClient'
-import { type Account } from '@/core/entities'
-import { type AddAccountParams } from '@/core/ports/driving/services'
+import { type WithId, type Account } from '@/core/entities'
 import {
   type IDeleteAccessTokenRepository,
   type IAddAccountRepository,
   type ILoadAccountByEmailRepository,
   type ILoadAccountByTokenRepository,
-  type IUpdateAccessTokenRepository
+  type IUpdateAccessTokenRepository,
+  type ILoadAccountByCPFRepository
 } from '@/core/ports/driven'
 
 export class AccountRepository implements
@@ -14,13 +14,13 @@ export class AccountRepository implements
   ILoadAccountByEmailRepository,
   ILoadAccountByTokenRepository,
   IUpdateAccessTokenRepository,
-  IDeleteAccessTokenRepository {
-  async add (params: AddAccountParams): Promise<Account> {
-    const response = await prismaClient.account.create({ data: params })
-    return response
+  IDeleteAccessTokenRepository,
+  ILoadAccountByCPFRepository {
+  async add (params: Account): Promise<WithId<Account>> {
+    return await prismaClient.account.create({ data: params })
   }
 
-  async loadByEmail (email: string): Promise<Account> {
+  async loadByEmail (email: string): Promise<WithId<Account>> {
     return await prismaClient.account.findUnique({ where: { email } })
   }
 
@@ -28,7 +28,7 @@ export class AccountRepository implements
     await prismaClient.account.update({ where: { id }, data: { accessToken: token } })
   }
 
-  async loadByToken (token: string, role?: string): Promise<Account> {
+  async loadByToken (token: string, role?: string): Promise<WithId<Account>> {
     return await prismaClient.account.findFirst({
       where: {
         accessToken: token,
@@ -40,7 +40,7 @@ export class AccountRepository implements
     })
   }
 
-  async loadByCpf (cpf: string): Promise<Account> {
+  async loadByCpf (cpf: string): Promise<WithId<Account>> {
     return await prismaClient.account.findFirst({ where: { cpf } })
   }
 

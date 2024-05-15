@@ -1,6 +1,6 @@
 import { type IAddProduct } from '@/core/ports/driving/services'
 import { AddProduct } from '@/application/services'
-import { ProductRepository } from '@/infrastructure/repositories/mongodb'
+import { ProductRepository } from '@/infrastructure/repositories/mysql'
 
 export const makeDbAddProduct = (): IAddProduct => {
   const repository = new ProductRepository()

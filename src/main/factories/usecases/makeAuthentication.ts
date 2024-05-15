@@ -1,7 +1,7 @@
 import env from '@/main/config/env'
 import { type IAuthentication } from '@/core/ports/driving/services'
 import { Authentication } from '@/application/services'
-import { AccountRepository } from '@/infrastructure/repositories/mongodb'
+import { AccountRepository } from '@/infrastructure/repositories/mysql'
 import { BcryptAdapter, JwtAdapter } from '@/infrastructure/criptography'
 
 export const makeDbAuthentication = (): IAuthentication => {
