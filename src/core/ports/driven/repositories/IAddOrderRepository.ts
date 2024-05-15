@@ -1,4 +1,4 @@
-import { type Order } from '@/core/entities'
+import { type OrderWithIds } from '@/core/entities'
 export interface IAddOrderRepository {
-  addOrder: (params: Order) => Promise<void>
+  addOrder: (params: OrderWithIds) => Promise<void>
 }

@@ -1,5 +1,5 @@
-import { type Order } from '@/core/entities'
+import { type OrderWithIds } from '@/core/entities'
 
 export interface IAddOrder {
-  add: (params: Order) => Promise<void>
+  add: (params: OrderWithIds) => Promise<void>
 }

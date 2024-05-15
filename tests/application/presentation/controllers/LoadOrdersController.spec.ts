@@ -1,30 +1,28 @@
-import { type Order } from '@/core/entities'
+import { type Order, type OrderWithIds } from '@/core/entities'
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { LoadOrdersController } from '@/application/presentation/controllers'
 import { noContent, serverError } from '@/application/presentation/helpers'
 
-const mockOrders = (): Order[] => ([
+const mockOrderWithIds = (): OrderWithIds[] => ([
   {
     number: 1,
     customer: 'any_customer',
     items: [
       {
-        orderId: '65aa013deca75aaae89c3a1b',
+        productId: 'any_product_id',
         totalItems: 2,
         unitPrice: 2000,
         amount: 4000
       },
       {
-        orderId: '65aa013deca75aaae89c3a1c',
+        productId: 'other_product_id',
         totalItems: 3,
         unitPrice: 6000,
         amount: 6000
       }
     ],
     status: 'any_status',
-    createdAt: new Date(),
-    updatedAt: new Date(),
     amount: 4000
   }
 ])
@@ -38,7 +36,7 @@ const mockRequest = (): IHTTPRequest => ({
 const mockLoadOrderStub = (): ILoadOrders => {
   class LoadOrdersStub implements ILoadOrders {
     async loadAll (): Promise<Order[]> {
-      return await Promise.resolve(mockOrders())
+      return await Promise.resolve(mockOrderWithIds())
     }
   }
   return new LoadOrdersStub()
@@ -68,7 +66,7 @@ describe('LoadOrder IController', () => {
 
   test('Should return an order on success', async () => {
     const { sut, loadOrdersStub } = mockSut()
-    jest.spyOn(loadOrdersStub, 'loadAll').mockReturnValueOnce(Promise.resolve([mockOrders()[1]]))
+    jest.spyOn(loadOrdersStub, 'loadAll').mockReturnValueOnce(Promise.resolve([mockOrderWithIds()[1]]))
     const response = await sut.handle(mockRequest())
     expect(response.body.length).toEqual(1)
   })

@@ -1,4 +1,4 @@
-import { type Order } from '@/core/entities'
+import { type Order, type OrderWithIds } from '@/core/entities'
 import {
   type IValidation,
   type IHTTPRequest
@@ -7,25 +7,23 @@ import { AddOrderController } from '@/application/presentation/controllers'
 import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
 import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 
-const mockAddOrderParams = (): Order => ({
+const mockOrderWithIds = (): OrderWithIds => ({
   number: 1234,
   customer: 'any_customer',
   items: [
     {
-      orderId: 'any_order_id',
+      productId: 'any_product_id',
       totalItems: 2,
       unitPrice: 2000,
       amount: 4000
     }
   ],
   status: 'any_status',
-  createdAt: new Date(),
-  updatedAt: new Date(),
   amount: 4000
 })
 
 const mockRequest = (): IHTTPRequest => ({
-  body: mockAddOrderParams()
+  body: mockOrderWithIds()
 })
 
 const mockValidation = (): IValidation => {

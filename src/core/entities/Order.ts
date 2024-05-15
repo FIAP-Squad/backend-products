@@ -1,16 +1,17 @@
 export type Item = {
-  orderId: string
   totalItems: number
   unitPrice: number
   amount: number
 }
 
+export type ItemWithProductId = Item & { productId: string }
+
 export type Order = {
   number: number
   customer: string
   status: string
-  createdAt: Date
-  updatedAt: Date
   amount: number
   items: Item[]
 }
+
+export type OrderWithIds = Omit<Order, 'items'> & { items: ItemWithProductId[] }
