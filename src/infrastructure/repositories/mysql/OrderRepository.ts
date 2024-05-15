@@ -34,7 +34,14 @@ export class OrderRepository implements IAddOrderRepository, IUpdateOrderReposit
           select: {
             id: false,
             amount: true,
-            product: true,
+            product: {
+              select: {
+                name: true,
+                price: true,
+                description: true,
+                image: true
+              }
+            },
             totalItems: true,
             unitPrice: true
           }

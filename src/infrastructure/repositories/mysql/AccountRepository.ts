@@ -40,7 +40,7 @@ export class AccountRepository implements
     })
   }
 
-  async loadByCpf (cpf: string): Promise<WithId<Account>> {
+  async loadByCpf (cpf: number): Promise<WithId<Account>> {
     return await prismaClient.account.findFirst({ where: { cpf } })
   }
 

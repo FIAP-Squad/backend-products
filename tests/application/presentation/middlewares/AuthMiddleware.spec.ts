@@ -11,7 +11,7 @@ import {
 
 const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 'any_cpf',
+  cpf: 12345678901,
   name: 'any_name',
   email: 'any_email@mail.com',
   password: 'hashed_password'

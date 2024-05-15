@@ -8,7 +8,7 @@ const updateParams = (): UpdateProductParams => ({
   body: {
     category: 'other_category',
     name: 'any_name',
-    price: 'any_price',
+    price: 1234,
     description: 'any_description',
     image: 'any_image'
   },

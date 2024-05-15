@@ -4,7 +4,7 @@ import { type ILoadAccountByCPFRepository } from '@/core/ports/driven'
 
 const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 'valid_cpf',
+  cpf: 12345678901,
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
@@ -12,7 +12,7 @@ const mockAccount = (): WithId<Account> => ({
 
 const mockLoadAccountByRepositoryStub = (): ILoadAccountByCPFRepository => {
   class LoadAccountByCPFRepositoryStub implements ILoadAccountByCPFRepository {
-    async loadByCpf (cpf: string): Promise<WithId<Account>> {
+    async loadByCpf (cpf: number): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }
@@ -37,20 +37,20 @@ describe('LoadACcountByCPF Usecase', () => {
   test('Should call ILoadAccountByCPFRepository with correct values', async () => {
     const { sut, loadAccountByCPFRepositoryStub } = mockSut()
     const loadByCpfStub = jest.spyOn(loadAccountByCPFRepositoryStub, 'loadByCpf')
-    await sut.loadByCpf('valid_cpf')
-    expect(loadByCpfStub).toHaveBeenCalledWith('valid_cpf')
+    await sut.loadByCpf(12345678901)
+    expect(loadByCpfStub).toHaveBeenCalledWith(12345678901)
   })
 
   test('Should thorws if ILoadAccountByCPFRepository throws', async () => {
     const { sut, loadAccountByCPFRepositoryStub } = mockSut()
     jest.spyOn(loadAccountByCPFRepositoryStub, 'loadByCpf').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.loadByCpf('valid_cpf')
+    const promise = sut.loadByCpf(12345678901)
     await expect(promise).rejects.toThrow()
   })
 
   test('Should return account on success', async () => {
     const { sut } = mockSut()
-    const account = await sut.loadByCpf('valid_cpf')
+    const account = await sut.loadByCpf(12345678901)
     expect(account).toEqual(mockAccount())
   })
 })

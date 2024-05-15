@@ -1,6 +1,5 @@
 import { prismaClient } from '@/infrastructure/repositories/prismaClient'
 import { type Product } from '@/core/entities'
-import { type AddProductParams } from '@/core/ports/driving/services'
 import {
   type IAddProductRepository,
   type ILoadProductsRepository,
@@ -14,7 +13,7 @@ export class ProductRepository implements
   ILoadProductsRepository,
   IDeleteProductRepository,
   IUpdateProductRepository {
-  async add (params: AddProductParams): Promise<void> {
+  async add (params: Product): Promise<void> {
     await prismaClient.product.create({ data: params })
   }
 

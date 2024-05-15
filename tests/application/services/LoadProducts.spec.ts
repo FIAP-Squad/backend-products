@@ -8,7 +8,7 @@ const mockProducts = (): Array<WithId<Product>> => ([
     id: 'any_id',
     category: 'any_category',
     name: 'any_name',
-    price: 'any_price',
+    price: 1234,
     description: 'any_description',
     image: 'any_image'
   },
@@ -16,7 +16,7 @@ const mockProducts = (): Array<WithId<Product>> => ([
     id: 'other_id',
     category: 'other_category',
     name: 'other_name',
-    price: 'other_price',
+    price: 1234,
     description: 'other_description',
     image: 'other_image'
   }

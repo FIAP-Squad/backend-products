@@ -16,7 +16,7 @@ const mockDecrypterStub = (): IDecrypter => {
 
 const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 'valid_cpf',
+  cpf: 1234,
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
