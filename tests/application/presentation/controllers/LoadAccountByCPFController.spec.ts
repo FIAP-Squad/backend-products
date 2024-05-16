@@ -1,4 +1,4 @@
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
 import { LoadAccountByCPFController } from '@/application/presentation/controllers'
@@ -10,13 +10,13 @@ import {
 
 const mockRequest = (): IHTTPRequest => ({
   params: {
-    cpf: 'valid_cpf'
+    cpf: 1234
   }
 })
 
-const mockAccount = (): Account => ({
+const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 'valid_cpf',
+  cpf: 1234,
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
@@ -24,7 +24,7 @@ const mockAccount = (): Account => ({
 
 const mockLoadAccountByCpf = (): ILoadAccountByCPF => {
   class LoadAccountByCpfStub implements ILoadAccountByCPF {
-    async loadByCpf (cpf: string): Promise<Account> {
+    async loadByCpf (cpf: number): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }
@@ -50,7 +50,7 @@ describe('ILoadAccountByCPF IController', () => {
     const { sut, loadAccountByCpfStub } = mockSut()
     const loadbyCpfSpy = jest.spyOn(loadAccountByCpfStub, 'loadByCpf')
     await sut.handle(mockRequest())
-    expect(loadbyCpfSpy).toHaveBeenCalledWith('valid_cpf')
+    expect(loadbyCpfSpy).toHaveBeenCalledWith(1234)
   })
 
   test('Should return 404 if ILoadAccountByCPF returns empty', async () => {

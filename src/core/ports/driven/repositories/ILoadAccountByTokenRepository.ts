@@ -1,5 +1,5 @@
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 
 export interface ILoadAccountByTokenRepository {
-  loadByToken: (token: string, role?: string) => Promise<Account>
+  loadByToken: (token: string, role?: string) => Promise<WithId<Account>>
 }

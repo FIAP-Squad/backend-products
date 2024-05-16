@@ -8,15 +8,15 @@ import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 
 export class AddOrderController implements IController {
   constructor (
-    private readonly validation: IValidation,
-    private readonly addOrder: IAddOrder
+    private readonly _validation: IValidation,
+    private readonly _service: IAddOrder
   ) { }
 
   async handle (request: any): Promise<IHTTPResponse> {
     try {
-      const error = this.validation.validate(request.body)
+      const error = this._validation.validate(request.body)
       if (error) return badRequest(error)
-      await this.addOrder.add(request.body)
+      await this._service.add(request.body)
       return noContent()
     } catch (error) { return serverError(error) }
   }
