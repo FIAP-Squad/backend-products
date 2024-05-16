@@ -1,6 +1,6 @@
 export type Account = {
   name: string
-  cpf: number
+  cpf: string
   email: string
   password: string
   accessToken?: string
