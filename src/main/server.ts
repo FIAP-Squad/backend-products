@@ -9,8 +9,3 @@ prismaClient.$connect()
     app.listen(env.PORT, () => process.stdout.write(`Server running at ${env.PORT}`))
   })
   .catch(console.error)
-
-/*
-mysql -h fiap-rds-api-db.cyjnswqfrmiw.us-east-1.rds.amazonaws.com -u admin -p
-og2m3z7W,2Yz
-*/
