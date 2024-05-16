@@ -1,39 +1,35 @@
-import { type Order } from '@/core/entities'
+import { type Order, type OrderWithIds } from '@/core/entities'
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { type ILoadOrdersRepository } from '@/core/ports/driven'
 import { LoadOrders } from '@/application/services'
 
-const mockOrders = (): Order[] => ([
+const mockOrderWithIds = (): OrderWithIds[] => ([
   {
     number: 1,
     customer: 'any_customer',
-    products: [
+    items: [
       {
-        id: '65aa013deca75aaae89c3a1b',
+        productId: 'any_product_id',
         totalItems: 2,
         unitPrice: 2000,
         amount: 4000
       }
     ],
     status: 'any_status',
-    createdAt: new Date(),
-    updatedAt: new Date(),
     amount: 4000
   },
   {
     number: 2,
     customer: 'other_customer',
-    products: [
+    items: [
       {
-        id: '65aa013deca75aaae89c3a1b',
+        productId: 'other_product_id',
         totalItems: 2,
         unitPrice: 2000,
         amount: 4000
       }
     ],
     status: 'other_status',
-    createdAt: new Date(),
-    updatedAt: new Date(),
     amount: 4000
   }
 ])
@@ -41,7 +37,7 @@ const mockOrders = (): Order[] => ([
 const mockOrdersRepository = (): ILoadOrdersRepository => {
   class LoadOrdersRepositoryStub implements ILoadOrdersRepository {
     async loadAll (): Promise<Order[]> {
-      return await Promise.resolve(mockOrders())
+      return await Promise.resolve(mockOrderWithIds())
     }
   }
   return new LoadOrdersRepositoryStub()
@@ -72,7 +68,7 @@ describe('ILoadOrders Usecase', () => {
   test('Should return a list of Orders on success', async () => {
     const { sut } = mockSut()
     const orders = await sut.loadAll({})
-    expect(orders).toEqual(mockOrders())
+    expect(orders).toEqual(mockOrderWithIds())
   })
 
   test('Should throw if ILoadOrdersRepository throws', async () => {

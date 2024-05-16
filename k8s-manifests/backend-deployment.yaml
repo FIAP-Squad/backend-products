@@ -26,11 +26,11 @@ spec:
         ports:
         - containerPort: 5050
         env:
-        - name: MONGO_URL
+        - name: DATABASE_URL
           valueFrom:
             configMapKeyRef:
-              name: mongodb-config
-              key: MONGO_URL
+              name: db-config
+              key: DATABASE_URL
         resources:
             requests:
               cpu: "250m"

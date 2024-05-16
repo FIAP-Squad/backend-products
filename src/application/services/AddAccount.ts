@@ -1,5 +1,5 @@
-import { type Account } from '@/core/entities'
-import { type AddAccountParams, type IAddAccount } from '@/core/ports/driving/services'
+import { type WithId, type Account } from '@/core/entities'
+import { type IAddAccount } from '@/core/ports/driving/services'
 import {
   type IHasher,
   type IAddAccountRepository,
@@ -8,16 +8,16 @@ import {
 
 export class AddAccount implements IAddAccount {
   constructor (
-    private readonly hasher: IHasher,
-    private readonly addRepository: IAddAccountRepository,
-    private readonly loadRepository: ILoadAccountByEmailRepository
+    private readonly _hasher: IHasher,
+    private readonly _commandRepository: IAddAccountRepository,
+    private readonly _queryRepository: ILoadAccountByEmailRepository
   ) { }
 
-  async add (params: AddAccountParams): Promise<Account> {
-    const account = await this.loadRepository.loadByEmail(params.email)
+  async add (params: Account): Promise<WithId<Account>> {
+    const account = await this._queryRepository.loadByEmail(params.email)
     if (!account) {
-      const hashedPassword = await this.hasher.hash(params.password)
-      return await this.addRepository.add(Object.assign({}, params, { password: hashedPassword }))
+      const hashedPassword = await this._hasher.hash(params.password)
+      return await this._commandRepository.add(Object.assign({}, params, { password: hashedPassword }))
     }
     return null
   }

@@ -1,5 +1,5 @@
-import { type AddProductParams } from '@/core/ports/driving/services/IAddProduc'
+import { type Product } from '@/core/entities'
 
 export interface IAddProductRepository {
-  add: (params: AddProductParams) => Promise<void>
+  add: (params: Product) => Promise<void>
 }

@@ -1,5 +1,5 @@
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 
 export interface ILoadAccountByCPF {
-  loadByCpf: (cpf: string) => Promise<Account>
+  loadByCpf: (cpf: number) => Promise<WithId<Account>>
 }

@@ -1,11 +1,11 @@
+import { type Product } from '@/core/entities'
 import { AddProduct } from '@/application/services'
-import { type AddProductParams } from '@/core/ports/driving/services'
 import { type IAddProductRepository } from '@/core/ports/driven'
 
-const mockAddProductParams = (): AddProductParams => ({
+const mockProduct = (): Product => ({
   category: 'any_category',
   name: 'any_name',
-  price: 'any_price',
+  price: 1234,
   description: 'any_description',
   image: 'any_image'
 })
@@ -17,7 +17,7 @@ interface SutTypes {
 
 const mockAddProductRepository = (): IAddProductRepository => {
   class AddProductRepositoryStub implements IAddProductRepository {
-    async add (params: AddProductParams): Promise<void> {
+    async add (params: Product): Promise<void> {
       return await Promise.resolve()
     }
   }
@@ -38,7 +38,7 @@ describe('AddProduct Usecase', () => {
   test('Should call IAddProductRepository usign correct values', async () => {
     const { sut, addProductRepositoryStub } = mockSut()
     const addSpy = jest.spyOn(addProductRepositoryStub, 'add')
-    const addProductData = mockAddProductParams()
+    const addProductData = mockProduct()
     await sut.add(addProductData)
     expect(addSpy).toHaveBeenCalledWith(addProductData)
   })
@@ -46,7 +46,7 @@ describe('AddProduct Usecase', () => {
   test('Shoud throw Error if IHasher Throw Error', async () => {
     const { sut, addProductRepositoryStub } = mockSut()
     jest.spyOn(addProductRepositoryStub, 'add').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.add(mockAddProductParams())
+    const promise = sut.add(mockProduct())
     await expect(promise).rejects.toThrow()
   })
 })

@@ -1,6 +1,5 @@
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 import {
-  type AddAccountParams,
   type IAuthentication,
   type AuthenticationParams,
   type IAddAccount
@@ -13,24 +12,24 @@ import { serverError, ok, badRequest, forbidden } from '@/application/presentati
 const mockRequest = (): IHTTPRequest => ({
   body: {
     name: 'any_name',
-    cpf: 'valid_cpf',
+    cpf: 1234,
     email: 'any_email@mail.com',
     password: 'any_password',
     passwordConfirmation: 'any_password'
   }
 })
 
-const mockAccount = (): Account => ({
+const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 'valid_cpf',
+  cpf: 1234,
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'valid_password'
 })
 
-const mockAddAccountParams = (): AddAccountParams => ({
+const mockAddAccountParams = (): Account => ({
   name: 'any_name',
-  cpf: 'valid_cpf',
+  cpf: 1234,
   email: 'any_email@mail.com',
   password: 'any_password'
 })
@@ -46,7 +45,7 @@ const mockAuthentication = (): IAuthentication => {
 
 const mockAddAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
-    async add (account: AddAccountParams): Promise<Account> {
+    async add (account: Account): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }

@@ -1,5 +1,4 @@
 import {
-  type AddProductParams,
   type IAddProduct
 } from '@/core/ports/driving/services'
 import {
@@ -12,17 +11,18 @@ import {
   serverError,
   noContent
 } from '@/application/presentation/helpers'
+import { type Product } from '@/core/entities'
 
-const mockAddProductParams = (): AddProductParams => ({
+const mockProduct = (): Product => ({
   category: 'any_category',
   name: 'any_name',
-  price: 'any_price',
+  price: 1234,
   description: 'any_description',
   image: 'any_image'
 })
 
 const mockRequest = (): IHTTPRequest => ({
-  body: mockAddProductParams()
+  body: mockProduct()
 })
 
 const mockValidation = (): IValidation => {
@@ -37,7 +37,7 @@ const mockValidation = (): IValidation => {
 
 const mockAddProduct = (): IAddProduct => {
   class AddProductStub implements IAddProduct {
-    async add (data: AddProductParams): Promise<void> {
+    async add (data: Product): Promise<void> {
       return await Promise.resolve()
     }
   }

@@ -1,4 +1,4 @@
-import { type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/core/entities'
 import { LoadAccountByToken } from '@/application/services'
 import {
   type IDecrypter,
@@ -14,9 +14,9 @@ const mockDecrypterStub = (): IDecrypter => {
   return new DecrypterStub()
 }
 
-const mockAccount = (): Account => ({
+const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 'valid_cpf',
+  cpf: 1234,
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
@@ -24,7 +24,7 @@ const mockAccount = (): Account => ({
 
 const mockLoadAccountByTokenRepository = (): ILoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements ILoadAccountByTokenRepository {
-    async loadByToken (token: string, role?: string): Promise<Account> {
+    async loadByToken (token: string, role?: string): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }

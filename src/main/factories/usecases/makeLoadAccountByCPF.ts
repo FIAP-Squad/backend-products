@@ -1,8 +1,8 @@
 import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
 import { LoadACcountByCPF } from '@/application/services'
-import { AccountMongoRepository } from '@/infrastructure/repositories/mongodb'
+import { AccountRepository } from '@/infrastructure/repositories/mysql'
 
 export const makeDbLoadAccountByCpf = (): ILoadAccountByCPF => {
-  const repository = new AccountMongoRepository()
+  const repository = new AccountRepository()
   return new LoadACcountByCPF(repository)
 }
