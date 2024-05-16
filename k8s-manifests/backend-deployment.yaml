@@ -26,11 +26,11 @@ spec:
         ports:
         - containerPort: 5050
         env:
-        - name: DATABASE_URL
+        - name: MONGO_URL
           valueFrom:
             configMapKeyRef:
-              name: db-config
-              key: DATABASE_URL
+              name: mongodb-config
+              key: MONGO_URL
         resources:
             requests:
               cpu: "250m"
@@ -51,5 +51,6 @@ spec:
         #   initialDelaySeconds: 20
         #   failureThreshold: 3
         #   periodSeconds: 20
+      imagePullPolicy: Always
       imagePullSecrets:
         - name: backend-registry-secret

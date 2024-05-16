@@ -17,14 +17,14 @@ const mockHasher = (): IHasher => {
 
 const mockAccountWithId = (): WithId<Account> => ({
   id: 'any_id',
-  cpf: 1234,
+  cpf: 'valid_cpf',
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
 })
 
 const mockAccount = (): Account => ({
-  cpf: 1234,
+  cpf: 'valid_cpf',
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
@@ -89,7 +89,7 @@ describe('AddAccount Usecase', () => {
     await sut.add(mockAccount())
     expect(addSpy).toHaveBeenCalledWith({
       name: 'valid_name',
-      cpf: 1234,
+      cpf: 'valid_cpf',
       email: 'valid_email@mail.com',
       password: 'hashed_password'
     })

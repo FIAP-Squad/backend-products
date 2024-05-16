@@ -12,7 +12,7 @@ import { serverError, ok, badRequest, forbidden } from '@/application/presentati
 const mockRequest = (): IHTTPRequest => ({
   body: {
     name: 'any_name',
-    cpf: 1234,
+    cpf: 'valid_cpf',
     email: 'any_email@mail.com',
     password: 'any_password',
     passwordConfirmation: 'any_password'
@@ -21,7 +21,7 @@ const mockRequest = (): IHTTPRequest => ({
 
 const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',
-  cpf: 1234,
+  cpf: 'valid_cpf',
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'valid_password'
@@ -29,7 +29,7 @@ const mockAccount = (): WithId<Account> => ({
 
 const mockAddAccountParams = (): Account => ({
   name: 'any_name',
-  cpf: 1234,
+  cpf: 'valid_cpf',
   email: 'any_email@mail.com',
   password: 'any_password'
 })
