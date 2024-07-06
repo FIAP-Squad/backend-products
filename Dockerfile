@@ -20,10 +20,12 @@
 
 FROM node:18
 WORKDIR /usr/src/fiap-fase3-app
+COPY package*.json ./
+RUN npm i
 COPY . .
-RUN npm i && npm i -g typescript
-RUN tsc
+RUN npm run build
 RUN npx prisma generate
 ENV DATABASE_URL=mysql://root:root@db:3306/fiap_db
+RUN chmod +x ./start.sh
 # CMD ["node", "dist/main/server.js"]
 CMD ["./start.sh"]
