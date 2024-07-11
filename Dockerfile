@@ -25,5 +25,4 @@ RUN npm i && npm i -g typescript
 RUN tsc
 RUN npx prisma generate
 ENV DATABASE_URL=mysql://root:root@db:3306/fiap_db
-# CMD ["node", "dist/main/server.js"]
 CMD ["./start.sh"]
