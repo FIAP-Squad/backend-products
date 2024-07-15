@@ -1,10 +1,10 @@
-import { type Payment } from '@/core/entities/Payment'
+import { type Payment } from '@/core/entities'
 import {
   type IValidation,
   type IHTTPRequest
 } from '@/core/ports/driving/presentation'
 import { AddPaymentController } from '@/application/presentation/controllers'
-import { type IAddPayment } from '@/core/ports/driving/services/IAddPayment'
+import { type IAddPayment } from '@/core/ports/driving/services'
 import { badRequest, created, serverError } from '@/application/presentation/helpers'
 
 const mockPayment = (): Payment => ({
