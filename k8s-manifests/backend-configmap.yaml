@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-config
-  namespace: app
-  labels:
-    name: db-config
-data:
-  DATABASE_URL: mysql://admin:og2m3z7W,2Yz@fiap-rds-api-db.cyjnswqfrmiw.us-east-1.rds.amazonaws.com:3306/fiap-api
