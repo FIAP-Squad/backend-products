@@ -5,7 +5,7 @@ import {
 } from '@/core/ports/driving/presentation'
 import { AddPaymentController } from '@/application/presentation/controllers'
 import { type IAddPayment } from '@/core/ports/driving/services/IAddPayment'
-import { badRequest } from '@/application/presentation/helpers'
+import { badRequest, created, serverError } from '@/application/presentation/helpers'
 
 const mockPayment = (): Payment => ({
   orderCode: 'any_order_code',
@@ -69,5 +69,19 @@ describe('AddPaymentController', () => {
     const request = mockRequest()
     const response = await sut.handle(request)
     expect(response).toEqual(badRequest(new Error()))
+  })
+
+  test('Should return 500 if IAddPayment throws', async () => {
+    const { sut, addPaymentStub } = mockSut()
+    jest.spyOn(addPaymentStub, 'add').mockReturnValueOnce(Promise.reject(new Error()))
+    const response = await sut.handle(mockRequest())
+    expect(response).toEqual(serverError(new Error()))
+  })
+
+  test('Should return 201 on success', async () => {
+    const { sut, addPaymentStub } = mockSut()
+    jest.spyOn(addPaymentStub, 'add')
+    const response = await sut.handle(mockRequest())
+    expect(response).toEqual(created())
   })
 })

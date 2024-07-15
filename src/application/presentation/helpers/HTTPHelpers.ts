@@ -15,6 +15,11 @@ export const noContent = (): IHTTPResponse => ({
   body: null
 })
 
+export const created = (): IHTTPResponse => ({
+  statusCode: 201,
+  body: null
+})
+
 export const badRequest = (error: Error): IHTTPResponse => ({
   statusCode: 400,
   body: error
