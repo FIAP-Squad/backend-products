@@ -38,14 +38,10 @@ export class AccountRepository implements
   }
 
   async loadByToken (token: string, role?: string): Promise<WithId<Account>> {
+    const whereClause: any = { accessToken: token }
+    if (role) whereClause.role = role
     return await prismaClient.account.findFirst({
-      where: {
-        accessToken: token,
-        OR: [
-          { role },
-          { role: 'admin' }
-        ]
-      },
+      where: whereClause,
       select: {
         id: true,
         name: true,
