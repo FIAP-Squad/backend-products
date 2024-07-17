@@ -1,4 +1,4 @@
-import { prismaClient } from '@/infrastructure/repositories/prismaClient'
+import { prismaClient } from '@/adapters/repositories/prismaClient'
 import { type ILogErrorRepository } from '@/core/ports/driven'
 
 export class LogRepository implements ILogErrorRepository {

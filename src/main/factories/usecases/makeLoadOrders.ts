@@ -1,6 +1,6 @@
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { LoadOrders } from '@/application/services'
-import { OrderRepository } from '@/infrastructure/repositories'
+import { OrderRepository } from '@/adapters/repositories'
 
 export const makeDbLoadOrders = (): ILoadOrders => {
   const repository = new OrderRepository()

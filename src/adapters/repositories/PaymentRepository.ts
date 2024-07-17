@@ -1,4 +1,4 @@
-import { prismaClient } from '@/infrastructure/repositories/prismaClient'
+import { prismaClient } from '@/adapters/repositories/prismaClient'
 import { type Payment } from '@/core/entities'
 import {
   type IUpdatePaymentRepository,

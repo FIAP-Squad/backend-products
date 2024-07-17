@@ -1,5 +1,5 @@
 import { type IUpdatePayment } from '@/core/ports/driving/services'
-import { PaymentRepository } from '@/infrastructure/repositories'
+import { PaymentRepository } from '@/adapters/repositories'
 import { UpdatePayment } from '@/application/services'
 
 export const makeUpdatePayment = (): IUpdatePayment => {
