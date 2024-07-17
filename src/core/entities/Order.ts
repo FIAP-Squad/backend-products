@@ -1,3 +1,5 @@
+import { type Payment } from '.'
+
 export type Item = {
   totalItems: number
   unitPrice: number
@@ -11,6 +13,7 @@ export type Order = {
   customer: string
   status: string
   amount: number
+  payment: Payment
   items: Item[]
 }
 

@@ -1,10 +1,20 @@
 import { type OrderWithIds } from '@/core/entities'
 import { type IAddOrder } from '@/core/ports/driving/services'
-import { type IAddOrderRepository } from '@/core/ports/driven'
+import {
+  type IAddPaymentRepository,
+  type IAddOrderRepository
+} from '@/core/ports/driven'
 
 export class AddOrder implements IAddOrder {
-  constructor (private readonly _repository: IAddOrderRepository) { }
+  constructor (
+    private readonly _orderRepository: IAddOrderRepository,
+    private readonly _paymentRepository: IAddPaymentRepository
+  ) { }
+
   async add (params: OrderWithIds): Promise<void> {
-    await this._repository.addOrder(params)
+    const orderId = await this._orderRepository.addOrder(params)
+    const { payment } = params
+    payment.orderId = orderId
+    await this._paymentRepository.addPayment(payment)
   }
 }

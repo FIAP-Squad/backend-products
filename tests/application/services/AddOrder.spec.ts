@@ -1,11 +1,17 @@
-import { type OrderWithIds } from '@/core/entities'
+import { type Payment, type OrderWithIds } from '@/core/entities'
 import {
+  type IAddPaymentRepository,
   type IAddOrderRepository
 } from '@/core/ports/driven'
 import { AddOrder } from '@/application/services'
 
 const mockOrderWithIds = (): OrderWithIds => ({
   number: 1234,
+  payment: {
+    status: 'pendding',
+    orderId: '',
+    amount: 4000
+  },
   customer: 'any_customer',
   items: [
     {
@@ -19,9 +25,19 @@ const mockOrderWithIds = (): OrderWithIds => ({
   amount: 4000
 })
 
+const mockAddPaymentRepository = (): IAddPaymentRepository => {
+  class AddPaymentRepositoryStub implements IAddPaymentRepository {
+    async addPayment (params: Payment): Promise<void> {
+      await Promise.resolve(null)
+    }
+  }
+  const addPaymentRepositoryStub = new AddPaymentRepositoryStub()
+  return addPaymentRepositoryStub
+}
+
 const mockAddOrderRepository = (): IAddOrderRepository => {
   class AddOrderRepositoryStub implements IAddOrderRepository {
-    async addOrder (params: OrderWithIds): Promise<void> {
+    async addOrder (params: OrderWithIds): Promise<string> {
       return await Promise.resolve(null)
     }
   }
@@ -32,14 +48,17 @@ const mockAddOrderRepository = (): IAddOrderRepository => {
 type SutTypes = {
   sut: AddOrder
   addOrderRepositoryStub: IAddOrderRepository
+  addPaymentRepositoryStub: IAddPaymentRepository
 }
 
 const mockSut = (): SutTypes => {
   const addOrderRepositoryStub = mockAddOrderRepository()
-  const sut = new AddOrder(addOrderRepositoryStub)
+  const addPaymentRepositoryStub = mockAddPaymentRepository()
+  const sut = new AddOrder(addOrderRepositoryStub, addPaymentRepositoryStub)
   return {
     sut,
-    addOrderRepositoryStub
+    addOrderRepositoryStub,
+    addPaymentRepositoryStub
   }
 }
 
@@ -57,5 +76,19 @@ describe('AddOrder Usecase', () => {
     jest.spyOn(addOrderRepositoryStub, 'addOrder').mockReturnValueOnce(Promise.reject(new Error()))
     const promise = sut.add(mockOrderWithIds())
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Ensure AddPaymentRepository is called with correct values', async () => {
+    const { sut, addOrderRepositoryStub, addPaymentRepositoryStub } = mockSut()
+    jest.spyOn(addOrderRepositoryStub, 'addOrder').mockReturnValueOnce(Promise.resolve('any_orderId'))
+    const addPaymentStub = jest.spyOn(addPaymentRepositoryStub, 'addPayment')
+    const order = mockOrderWithIds()
+    await sut.add(order)
+    console.log(order.payment)
+    expect(addPaymentStub).toHaveBeenCalledWith({
+      status: 'pendding',
+      orderId: 'any_orderId',
+      amount: 4000
+    })
   })
 })

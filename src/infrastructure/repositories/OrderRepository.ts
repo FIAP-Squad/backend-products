@@ -10,10 +10,19 @@ import {
 } from '@/core/ports/driven'
 
 export class OrderRepository implements IAddOrderRepository, IUpdateOrderRepository, ILoadOrdersRepository {
-  async addOrder (params: OrderWithIds): Promise<void> {
-    console.log(params)
-    const { items, ...order } = params
-    await prismaClient.order.create({ data: { ...order, items: { createMany: { data: items } } } })
+  async addOrder (params: OrderWithIds): Promise<string> {
+    const { items, payment, ...order } = params
+    const { id } = await prismaClient.order.create({
+      data: {
+        ...order,
+        items: {
+          createMany: {
+            data: items
+          }
+        }
+      }
+    })
+    return id
   }
 
   async updateOrder (params: UpdateOrderParams): Promise<void> {
@@ -29,6 +38,13 @@ export class OrderRepository implements IAddOrderRepository, IUpdateOrderReposit
         customer: true,
         status: true,
         amount: true,
+        payment: {
+          select: {
+            amount: true,
+            status: true,
+            orderId: true
+          }
+        },
         items: {
           select: {
             amount: true,

@@ -9,6 +9,11 @@ import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 
 const mockOrderWithIds = (): OrderWithIds => ({
   number: 1234,
+  payment: {
+    status: 'any_status',
+    orderId: 'any_orderId',
+    amount: 4000
+  },
   customer: 'any_customer',
   items: [
     {
@@ -62,7 +67,7 @@ const mockSut = (): SutTypes => {
 }
 
 describe('AddOrderController', () => {
-  test('Should call IAddOrder Usecase with a correct values ', async () => {
+  test('Should call IValidation Usecase with a correct values ', async () => {
     const { sut, validationStub } = mockSut()
     const validationSpy = jest.spyOn(validationStub, 'validate')
     const request = mockRequest()
@@ -78,22 +83,22 @@ describe('AddOrderController', () => {
     expect(response).toEqual(badRequest(new Error()))
   })
 
-  test('Should call IAddProduct with correct values', async () => {
+  test('Should call IAddOrder with correct values', async () => {
     const { sut, addOrderStub } = mockSut()
-    const addProductSpy = jest.spyOn(addOrderStub, 'add')
+    const addOrderSpy = jest.spyOn(addOrderStub, 'add')
     const request = mockRequest()
     await sut.handle(request)
-    expect(addProductSpy).toHaveBeenCalledWith(request.body)
+    expect(addOrderSpy).toHaveBeenCalledWith(request.body)
   })
 
-  test('Should return 500 if IAddProduct throws', async () => {
+  test('Should return 500 if IAddOrder throws', async () => {
     const { sut, addOrderStub } = mockSut()
     jest.spyOn(addOrderStub, 'add').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })
 
-  test('Should return 500 if IAddProduct throws', async () => {
+  test('Should return 204 if Order is successfully created', async () => {
     const { sut } = mockSut()
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(noContent())

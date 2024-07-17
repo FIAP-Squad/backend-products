@@ -7,6 +7,11 @@ import { noContent, serverError } from '@/application/presentation/helpers'
 const mockOrderWithIds = (): OrderWithIds[] => ([
   {
     number: 1,
+    payment: {
+      status: 'any_status',
+      orderId: 'any_orderId',
+      amount: 4000
+    },
     customer: 'any_customer',
     items: [
       {

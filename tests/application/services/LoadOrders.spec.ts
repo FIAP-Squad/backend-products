@@ -6,6 +6,11 @@ import { LoadOrders } from '@/application/services'
 const mockOrderWithIds = (): OrderWithIds[] => ([
   {
     number: 1,
+    payment: {
+      status: 'any_status',
+      orderId: 'any_orderId',
+      amount: 4000
+    },
     customer: 'any_customer',
     items: [
       {
@@ -20,6 +25,11 @@ const mockOrderWithIds = (): OrderWithIds[] => ([
   },
   {
     number: 2,
+    payment: {
+      status: 'other_status',
+      orderId: 'other_orderId',
+      amount: 4000
+    },
     customer: 'other_customer',
     items: [
       {
