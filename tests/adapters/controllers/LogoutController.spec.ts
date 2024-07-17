@@ -1,6 +1,6 @@
 import { type ILogout } from '@/core/ports/driving/services'
 import { type IValidation, type IHTTPRequest } from '@/core/ports/driving/presentation'
-import { LogoutController } from '@/application/presentation/controllers'
+import { LogoutController } from '@/adapters/controllers'
 import { MissingParam } from '@/application/presentation/errors'
 import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
 

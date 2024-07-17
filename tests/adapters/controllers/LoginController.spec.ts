@@ -4,7 +4,7 @@ import {
 import {
   type IHTTPRequest, type IValidation
 } from '@/core/ports/driving/presentation'
-import { LoginController } from '@/application/presentation/controllers'
+import { LoginController } from '@/adapters/controllers'
 import { MissingParam } from '@/application/presentation/errors'
 import {
   unauthorized,

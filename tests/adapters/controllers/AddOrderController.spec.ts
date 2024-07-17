@@ -3,7 +3,7 @@ import {
   type IValidation,
   type IHTTPRequest
 } from '@/core/ports/driving/presentation'
-import { AddOrderController } from '@/application/presentation/controllers'
+import { AddOrderController } from '@/adapters/controllers'
 import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
 import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 

@@ -1,6 +1,6 @@
 import { type IValidation, type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { type UpdateProductParams, type IUpdateProduct } from '@/core/ports/driving/services'
-import { UpdateProductController } from '@/application/presentation/controllers'
+import { UpdateProductController } from '@/adapters/controllers'
 import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
 
 const mockUpdateProduct = (): IUpdateProduct => {

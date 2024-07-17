@@ -4,7 +4,7 @@ import {
   type AuthenticationParams,
   type IAddAccount
 } from '@/core/ports/driving/services'
-import { SignUpController } from '@/application/presentation/controllers'
+import { SignUpController } from '@/adapters/controllers'
 import { type IHTTPRequest, type IValidation } from '@/core/ports/driving/presentation'
 import { ServerError, MissingParam, EmailInUse } from '@/application/presentation/errors'
 import { serverError, ok, badRequest, forbidden } from '@/application/presentation/helpers'

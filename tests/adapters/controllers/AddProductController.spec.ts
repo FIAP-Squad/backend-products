@@ -5,7 +5,7 @@ import {
   type IHTTPRequest,
   type IValidation
 } from '@/core/ports/driving/presentation'
-import { AddProductController } from '@/application/presentation/controllers'
+import { AddProductController } from '@/adapters/controllers'
 import {
   badRequest,
   serverError,

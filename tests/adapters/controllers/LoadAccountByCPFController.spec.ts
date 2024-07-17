@@ -1,7 +1,7 @@
 import { type WithId, type Account } from '@/core/entities'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
-import { LoadAccountByCPFController } from '@/application/presentation/controllers'
+import { LoadAccountByCPFController } from '@/adapters/controllers'
 import {
   notFound,
   serverError,

@@ -1,6 +1,6 @@
 import { type IDeleteProduct } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
-import { DeleteProductController } from '@/application/presentation/controllers'
+import { DeleteProductController } from '@/adapters/controllers'
 import {
   serverError,
   noContent

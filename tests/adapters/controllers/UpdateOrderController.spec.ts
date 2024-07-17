@@ -2,7 +2,7 @@ import {
   type IValidation,
   type IHTTPRequest
 } from '@/core/ports/driving/presentation'
-import { UpdateOrderController } from '@/application/presentation/controllers'
+import { UpdateOrderController } from '@/adapters/controllers'
 import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
 import {
   type IUpdateOrder,
