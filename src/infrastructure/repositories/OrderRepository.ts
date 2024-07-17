@@ -1,5 +1,9 @@
 import { prismaClient } from '@/infrastructure/repositories/prismaClient'
-import { type OrderWithIds, type Order } from '@/core/entities'
+import {
+  type OrderWithIds,
+  type Order,
+  type WithId
+} from '@/core/entities'
 import {
   type UpdateOrderParams
 } from '@/core/ports/driving/services'
@@ -30,10 +34,11 @@ export class OrderRepository implements IAddOrderRepository, IUpdateOrderReposit
     await prismaClient.order.update({ where: { id }, data: { status } })
   }
 
-  async loadAll (filter: any): Promise<Order[]> {
+  async loadAll (filter: any): Promise<Array<WithId<Order>>> {
     return await prismaClient.order.findMany({
       where: filter,
       select: {
+        id: true,
         number: true,
         customer: true,
         status: true,

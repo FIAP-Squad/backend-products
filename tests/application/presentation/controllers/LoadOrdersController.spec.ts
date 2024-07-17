@@ -1,11 +1,12 @@
-import { type Order, type OrderWithIds } from '@/core/entities'
+import { type WithId, type Order, type OrderWithIds } from '@/core/entities'
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { LoadOrdersController } from '@/application/presentation/controllers'
 import { noContent, serverError } from '@/application/presentation/helpers'
 
-const mockOrderWithIds = (): OrderWithIds[] => ([
+const mockOrderWithIds = (): Array<WithId<OrderWithIds>> => ([
   {
+    id: 'any_id',
     number: 1,
     payment: {
       status: 'any_status',
@@ -40,7 +41,7 @@ const mockRequest = (): IHTTPRequest => ({
 
 const mockLoadOrderStub = (): ILoadOrders => {
   class LoadOrdersStub implements ILoadOrders {
-    async loadAll (): Promise<Order[]> {
+    async loadAll (): Promise<Array<WithId<Order>>> {
       return await Promise.resolve(mockOrderWithIds())
     }
   }

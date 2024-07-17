@@ -1,10 +1,11 @@
-import { type Order, type OrderWithIds } from '@/core/entities'
+import { type WithId, type Order, type OrderWithIds } from '@/core/entities'
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { type ILoadOrdersRepository } from '@/core/ports/driven'
 import { LoadOrders } from '@/application/services'
 
-const mockOrderWithIds = (): OrderWithIds[] => ([
+const mockOrderWithIds = (): Array<WithId<OrderWithIds>> => ([
   {
+    id: 'any_id',
     number: 1,
     payment: {
       status: 'any_status',
@@ -24,6 +25,7 @@ const mockOrderWithIds = (): OrderWithIds[] => ([
     amount: 4000
   },
   {
+    id: 'other_id',
     number: 2,
     payment: {
       status: 'other_status',
@@ -46,7 +48,7 @@ const mockOrderWithIds = (): OrderWithIds[] => ([
 
 const mockOrdersRepository = (): ILoadOrdersRepository => {
   class LoadOrdersRepositoryStub implements ILoadOrdersRepository {
-    async loadAll (): Promise<Order[]> {
+    async loadAll (): Promise<Array<WithId<Order>>> {
       return await Promise.resolve(mockOrderWithIds())
     }
   }
