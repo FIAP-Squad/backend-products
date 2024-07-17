@@ -1,6 +1,6 @@
-import { type IUpdateProduct } from '@/core/ports/driving/services'
-import { UpdateProduct } from '@/application/services'
-import { ProductRepository } from '@/infrastructure/repositories'
+import { type IUpdateProduct } from '@/core'
+import { UpdateProduct } from '@/usecases'
+import { ProductRepository } from '@/adapters/repositories'
 
 export const makeDbUpdateProduct = (): IUpdateProduct => {
   const repository = new ProductRepository()

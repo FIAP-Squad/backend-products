@@ -1,8 +1,8 @@
 import env from '@/main/config/env'
-import { type ILoadAccountByToken } from '@/core/ports/driving/services'
-import { LoadAccountByToken } from '@/application/services'
+import { type ILoadAccountByToken } from '@/core'
+import { LoadAccountByToken } from '@/usecases'
 import { JwtAdapter } from '@/infrastructure/criptography'
-import { AccountRepository } from '@/infrastructure/repositories'
+import { AccountRepository } from '@/adapters/repositories'
 
 export const makeDbLoadAccountByToken = (): ILoadAccountByToken => {
   const jwt = new JwtAdapter(env.JWT_SECRET)

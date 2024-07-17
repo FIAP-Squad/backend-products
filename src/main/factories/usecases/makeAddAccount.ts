@@ -1,7 +1,7 @@
-import { type IAddAccount } from '@/core/ports/driving/services'
-import { AddAccount } from '@/application/services'
+import { type IAddAccount } from '@/core'
+import { AddAccount } from '@/usecases'
 import { BcryptAdapter } from '@/infrastructure/criptography'
-import { AccountRepository } from '@/infrastructure/repositories'
+import { AccountRepository } from '@/adapters/repositories'
 
 export const makeDbAddAccount = (): IAddAccount => {
   const salt = 12

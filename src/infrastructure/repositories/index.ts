@@ -1,5 +1,0 @@
-export * from './AccountRepository'
-export * from './LogRepository'
-export * from './OrderRepository'
-export * from './ProductRepository'
-export * from './prismaClient'

@@ -1,13 +1,13 @@
-import { type IValidation } from '@/core/ports/driving/presentation'
+import { type IValidation } from '@/core'
 import { EmailValidatorAdapter } from '@/infrastructure/validators'
 import { makeLoginValidation } from '@/main/factories/validations'
 import {
   EmailValidation,
   RequiredFieldsValidation,
   ValidationComposite
-} from '@/application/validation'
+} from '@/adapters/validation'
 
-jest.mock('@/application/validation/ValidationComposite')
+jest.mock('@/adapters/validation/ValidationComposite')
 
 describe('Login IValidation Factory', () => {
   test('Should call validation with all validations ', () => {

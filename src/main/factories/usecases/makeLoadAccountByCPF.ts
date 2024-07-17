@@ -1,6 +1,6 @@
-import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
-import { LoadACcountByCPF } from '@/application/services'
-import { AccountRepository } from '@/infrastructure/repositories'
+import { type ILoadAccountByCPF } from '@/core'
+import { LoadACcountByCPF } from '@/usecases'
+import { AccountRepository } from '@/adapters/repositories'
 
 export const makeDbLoadAccountByCpf = (): ILoadAccountByCPF => {
   const repository = new AccountRepository()

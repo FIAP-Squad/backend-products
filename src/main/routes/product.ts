@@ -1,5 +1,5 @@
 import { type Router } from 'express'
-import { adaptRoute } from '@/main/adapters'
+import { adaptRoute } from '@/main/frameworks'
 import { auth, adminAuth } from '@/main/middlewares'
 import {
   makeAddProductController,

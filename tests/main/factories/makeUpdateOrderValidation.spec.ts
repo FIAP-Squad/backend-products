@@ -1,8 +1,8 @@
-import { type IValidation } from '@/core/ports/driving/presentation'
-import { RequiredFieldsValidation, ValidationComposite } from '@/application/validation'
+import { type IValidation } from '@/core'
+import { RequiredFieldsValidation, ValidationComposite } from '@/adapters/validation'
 import { makeUpdateOrderValidation } from '@/main/factories/validations'
 
-jest.mock('@/application/validation/ValidationComposite')
+jest.mock('@/adapters/validation/ValidationComposite')
 
 describe('Add Order IValidation Factory', () => {
   test('Should call validation with all validations ', () => {

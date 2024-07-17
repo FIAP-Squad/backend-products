@@ -1,9 +1,10 @@
-import { type ILogErrorRepository } from '@/core/ports/driven'
 import {
   type IController,
-  type IHTTPRequest, type IHTTPResponse
-} from '@/core/ports/driving/presentation'
-import { serverError } from '@/application/presentation/helpers'
+  type IHTTPRequest,
+  type IHTTPResponse,
+  type ILogErrorRepository
+} from '@/core'
+import { serverError } from '@/adapters/helpers'
 import { LogControllerDecorator } from '@/main/decorators'
 
 const mockController = (): IController => {

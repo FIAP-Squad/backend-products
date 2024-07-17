@@ -1,5 +1,5 @@
 import 'module-alias/register'
-import { prismaClient } from '@/infrastructure/repositories/prismaClient'
+import { prismaClient } from '@/adapters/repositories/prismaClient'
 import env from './config/env'
 
 prismaClient.$connect()
