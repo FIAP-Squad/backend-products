@@ -1,5 +1,5 @@
 import { AddAccount } from '@/usecases'
-import { type WithId, type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/domain/entities'
 import {
   type IHasher,
   type IAddAccountRepository,

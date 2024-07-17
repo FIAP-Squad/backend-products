@@ -1,4 +1,4 @@
-import { type Order, type OrderWithIds } from '@/core/entities'
+import { type Order, type OrderWithIds } from '@/domain/entities'
 import {
   type IValidation,
   type IHTTPRequest

@@ -1,5 +1,5 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { type Payment } from '@/core/entities'
+import { type Payment } from '@/domain/entities'
 import {
   type IUpdatePaymentRepository,
   type IAddPaymentRepository,

@@ -1,5 +1,5 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { type Product } from '@/core/entities'
+import { type Product } from '@/domain/entities'
 import {
   type IAddProductRepository,
   type ILoadProductsRepository,

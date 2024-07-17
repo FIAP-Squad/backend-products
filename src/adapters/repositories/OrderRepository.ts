@@ -3,7 +3,7 @@ import {
   type OrderWithIds,
   type Order,
   type WithId
-} from '@/core/entities'
+} from '@/domain/entities'
 import {
   type UpdateOrderParams
 } from '@/core/ports/driving/services'

@@ -11,7 +11,7 @@ import {
   serverError,
   noContent
 } from '@/adapters/helpers'
-import { type Product } from '@/core/entities'
+import { type Product } from '@/domain/entities'
 
 const mockProduct = (): Product => ({
   category: 'any_category',

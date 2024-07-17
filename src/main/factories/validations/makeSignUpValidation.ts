@@ -4,7 +4,7 @@ import {
   ValidationComposite,
   CompareFieldsValidation,
   RequiredFieldsValidation
-} from '@/application/validation'
+} from '@/adapters/validation'
 import { type IValidation } from '@/core/ports/driving/presentation'
 import { EmailValidatorAdapter } from '@/infrastructure/validators'
 

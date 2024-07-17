@@ -1,4 +1,4 @@
-import { EmailValidation, RequiredFieldsValidation, ValidationComposite } from '@/application/validation'
+import { EmailValidation, RequiredFieldsValidation, ValidationComposite } from '@/adapters/validation'
 import { type IValidation } from '@/core/ports/driving/presentation'
 import { EmailValidatorAdapter } from '@/infrastructure/validators'
 

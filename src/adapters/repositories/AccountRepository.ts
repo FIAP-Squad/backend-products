@@ -1,5 +1,5 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { type WithId, type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/domain/entities'
 import {
   type IDeleteAccessTokenRepository,
   type IAddAccountRepository,

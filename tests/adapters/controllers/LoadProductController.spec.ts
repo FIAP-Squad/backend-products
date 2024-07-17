@@ -1,4 +1,4 @@
-import { type Product } from '@/core/entities'
+import { type Product } from '@/domain/entities'
 import { type ILoadProducts } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { LoadProductsController } from '@/adapters/controllers'

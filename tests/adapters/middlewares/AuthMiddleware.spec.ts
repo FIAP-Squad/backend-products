@@ -1,4 +1,4 @@
-import { type WithId, type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/domain/entities'
 import { type ILoadAccountByToken } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { AuthMiddleware } from '@/adapters/middlewares'

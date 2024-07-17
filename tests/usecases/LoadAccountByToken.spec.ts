@@ -1,4 +1,4 @@
-import { type WithId, type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/domain/entities'
 import { LoadAccountByToken } from '@/usecases'
 import {
   type IDecrypter,

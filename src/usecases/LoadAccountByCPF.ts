@@ -1,4 +1,4 @@
-import { type WithId, type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/domain/entities'
 import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
 import { type ILoadAccountByCPFRepository } from '@/core/ports/driven'
 export class LoadACcountByCPF implements ILoadAccountByCPF {

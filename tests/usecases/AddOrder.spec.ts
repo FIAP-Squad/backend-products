@@ -1,4 +1,4 @@
-import { type Payment, type OrderWithIds } from '@/core/entities'
+import { type Payment, type OrderWithIds } from '@/domain/entities'
 import {
   type IAddPaymentRepository,
   type IAddOrderRepository

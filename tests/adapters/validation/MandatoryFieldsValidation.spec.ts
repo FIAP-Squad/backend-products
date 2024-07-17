@@ -1,5 +1,5 @@
 import { MissingField } from '@/adapters/errors'
-import { MandatoryFieldValidation } from '@/application/validation'
+import { MandatoryFieldValidation } from '@/adapters/validation'
 
 const mandatoryFields: string[] = ['name', 'description', 'price', 'image', 'category']
 const mockSut = (): MandatoryFieldValidation => new MandatoryFieldValidation(mandatoryFields)

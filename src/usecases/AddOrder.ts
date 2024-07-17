@@ -1,4 +1,4 @@
-import { type OrderWithIds } from '@/core/entities'
+import { type OrderWithIds } from '@/domain/entities'
 import { type IAddOrder } from '@/core/ports/driving/services'
 import {
   type IAddPaymentRepository,

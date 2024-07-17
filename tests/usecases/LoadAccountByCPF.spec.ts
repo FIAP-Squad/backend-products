@@ -1,5 +1,5 @@
 import { LoadACcountByCPF } from '@/usecases'
-import { type WithId, type Account } from '@/core/entities'
+import { type WithId, type Account } from '@/domain/entities'
 import { type ILoadAccountByCPFRepository } from '@/core/ports/driven'
 
 const mockAccount = (): WithId<Account> => ({

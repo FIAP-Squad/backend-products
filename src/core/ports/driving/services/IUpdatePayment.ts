@@ -1,4 +1,4 @@
-import { type Payment } from '@/core/entities'
+import { type Payment } from '@/domain/entities'
 
 export type UpdatePaymentParams = {
   id: string

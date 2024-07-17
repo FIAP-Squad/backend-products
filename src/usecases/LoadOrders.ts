@@ -1,4 +1,4 @@
-import { type WithId, type Order } from '@/core/entities'
+import { type WithId, type Order } from '@/domain/entities'
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { type ILoadOrdersRepository } from '@/core/ports/driven'
 

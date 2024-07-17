@@ -1,4 +1,4 @@
-import { type Product } from '@/core/entities'
+import { type Product } from '@/domain/entities'
 import { AddProduct } from '@/usecases'
 import { type IAddProductRepository } from '@/core/ports/driven'
 

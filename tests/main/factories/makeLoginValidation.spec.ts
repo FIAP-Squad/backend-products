@@ -5,9 +5,9 @@ import {
   EmailValidation,
   RequiredFieldsValidation,
   ValidationComposite
-} from '@/application/validation'
+} from '@/adapters/validation'
 
-jest.mock('@/application/validation/ValidationComposite')
+jest.mock('@/adapters/validation/ValidationComposite')
 
 describe('Login IValidation Factory', () => {
   test('Should call validation with all validations ', () => {
