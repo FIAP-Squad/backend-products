@@ -16,17 +16,17 @@ import { EmailInUse } from '../errors'
 
 export class SignUpController implements IController {
   constructor (
-    private readonly _service: IAddAccount,
+    private readonly _usecase: IAddAccount,
     private readonly _validation: IValidation,
-    private readonly _authentication: IAuthentication
+    private readonly _applicationService: IAuthentication
   ) { }
 
-  async handle (request: IHTTPRequest): Promise<IHTTPResponse> {
+  async handle ({ body }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const error = this._validation.validate(request.body)
+      const error = this._validation.validate(body)
       if (error) return badRequest(error)
-      const { name, cpf, email, password, role } = request.body
-      const account = await this._service.add({
+      const { name, cpf, email, password, role } = body
+      const account = await this._usecase.add({
         name,
         cpf,
         email,
@@ -34,7 +34,7 @@ export class SignUpController implements IController {
         role
       })
       if (!account) return forbidden(new EmailInUse())
-      const accessToken = await this._authentication.auth({ email, password })
+      const accessToken = await this._applicationService.auth({ email, password })
       return ok({ accessToken })
     } catch (error) {
       return serverError(error)

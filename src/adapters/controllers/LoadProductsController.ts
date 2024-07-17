@@ -4,6 +4,7 @@ import {
   serverError
 } from '@/adapters/helpers'
 import {
+  type IHTTPRequest,
   type IController,
   type IHTTPResponse,
   type ILoadProducts
@@ -11,9 +12,8 @@ import {
 
 export class LoadProductsController implements IController {
   constructor (private readonly _service: ILoadProducts) { }
-  async handle (request: any): Promise<IHTTPResponse> {
+  async handle ({ query }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const { query } = request
       const filter = query ? { ...query } : {}
       const products = await this._service.load(filter)
       return (products.length > 0) ? ok(products) : noContent()

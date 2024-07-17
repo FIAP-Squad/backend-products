@@ -2,21 +2,22 @@ import {
   type IHTTPResponse,
   type IController,
   type IValidation,
-  type IAddOrder
+  type IAddOrder,
+  type IHTTPRequest
 } from '@/core'
 import { badRequest, noContent, serverError } from '../helpers'
 
 export class AddOrderController implements IController {
   constructor (
     private readonly _validation: IValidation,
-    private readonly _service: IAddOrder
+    private readonly _usecase: IAddOrder
   ) { }
 
-  async handle (request: any): Promise<IHTTPResponse> {
+  async handle ({ body }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const error = this._validation.validate(request.body)
+      const error = this._validation.validate(body)
       if (error) return badRequest(error)
-      await this._service.add(request.body)
+      await this._usecase.add(body)
       return noContent()
     } catch (error) { return serverError(error) }
   }

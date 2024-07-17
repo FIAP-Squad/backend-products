@@ -5,15 +5,16 @@ import {
 import {
   type IController,
   type IHTTPResponse,
-  type IDeleteProduct
+  type IDeleteProduct,
+  type IHTTPRequest
 } from '@/core'
 
 export class DeleteProductController implements IController {
-  constructor (private readonly _service: IDeleteProduct) { }
-  async handle (request: any): Promise<IHTTPResponse> {
+  constructor (private readonly _usecase: IDeleteProduct) { }
+  async handle ({ params }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const { id } = request.params
-      await this._service.delete(id)
+      const { id } = params
+      await this._usecase.delete(id)
       return noContent()
     } catch (error) {
       return serverError(error)

@@ -9,17 +9,16 @@ import { badRequest, noContent, serverError } from '@/adapters/helpers'
 
 export class UpdateProductController implements IController {
   constructor (
-    private readonly validation: IValidation,
-    private readonly updateProduct: IUpdateProduct
+    private readonly _validation: IValidation,
+    private readonly _usecase: IUpdateProduct
   ) { }
 
-  async handle (request: IHTTPRequest): Promise<IHTTPResponse> {
+  async handle ({ body, params }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const error = this.validation.validate(request.body)
+      const error = this._validation.validate(body)
       if (error) return badRequest(error)
-      const { body } = request
-      const { id } = request.params
-      await this.updateProduct.update({ id, body })
+      const { id } = params
+      await this._usecase.update({ id, body })
       return noContent()
     } catch (error) {
       return serverError(error)

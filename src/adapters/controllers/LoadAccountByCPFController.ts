@@ -4,6 +4,7 @@ import {
   serverError
 } from '@/adapters/helpers'
 import {
+  type IHTTPRequest,
   type IController,
   type IHTTPResponse,
   type ILoadAccountByCPF
@@ -11,9 +12,9 @@ import {
 
 export class LoadAccountByCPFController implements IController {
   constructor (private readonly _service: ILoadAccountByCPF) { }
-  async handle (request: any): Promise<IHTTPResponse> {
+  async handle ({ params }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const { cpf } = request.params
+      const { cpf } = params
       const account = await this._service.loadByCpf(cpf)
       if (!account) return notFound()
       return ok(account)

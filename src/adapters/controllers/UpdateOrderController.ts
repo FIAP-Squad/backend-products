@@ -9,17 +9,17 @@ import { badRequest, noContent, serverError } from '../helpers'
 
 export class UpdateOrderController implements IController {
   constructor (
-    private readonly validation: IValidation,
-    private readonly updateOrder: IUpdateOrder
+    private readonly _validation: IValidation,
+    private readonly _usecase: IUpdateOrder
   ) { }
 
-  async handle (request: IHTTPRequest): Promise<IHTTPResponse> {
+  async handle ({ body, params }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
-      const error = this.validation.validate(request.body)
+      const error = this._validation.validate(body)
       if (error) return badRequest(error)
-      const { id } = request.params
-      const { status } = request.body
-      await this.updateOrder.update({ id, status })
+      const { id } = params
+      const { status } = body
+      await this._usecase.update({ id, status })
       return noContent()
     } catch (error) {
       return serverError(error)
