@@ -1,6 +1,6 @@
 import { type Router } from 'express'
 import { auth } from '@/main/middlewares'
-import { adaptRoute } from '@/main/adapters'
+import { adaptRoute } from '@/main/frameworks'
 import { makeAddOrderController, makeUpdateOrderController, makeLoadOrdersController } from '@/main/factories/controllers'
 
 export const order = (router: Router): void => {
