@@ -1,5 +1,5 @@
 import { RequiredFieldsValidation, ValidationComposite } from '@/adapters/validation'
-import { type IValidation } from '@/core/ports/driving/presentation'
+import { type IValidation } from '@/core'
 
 export const makeLogoutValidation = (): ValidationComposite => {
   const validations: IValidation[] = []

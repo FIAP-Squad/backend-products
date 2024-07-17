@@ -1,7 +1,7 @@
 import {
   type UpdatePaymentParams,
   type IUpdatePaymentRepository
-} from '@/core/ports/driven'
+} from '@/core'
 import { UpdatePayment } from '@/usecases'
 
 const updatePaymentParams = (): UpdatePaymentParams => ({

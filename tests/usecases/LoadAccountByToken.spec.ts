@@ -1,9 +1,9 @@
-import { type WithId, type Account } from '@/domain/entities'
+import { type WithId, type Account } from '@/domain'
 import { LoadAccountByToken } from '@/usecases'
 import {
   type IDecrypter,
   type ILoadAccountByTokenRepository
-} from '@/core/ports/driven'
+} from '@/core'
 
 const mockDecrypterStub = (): IDecrypter => {
   class DecrypterStub implements IDecrypter {

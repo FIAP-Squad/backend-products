@@ -1,5 +1,5 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { type WithId, type Account } from '@/domain/entities'
+import { type WithId, type Account } from '@/domain'
 import {
   type IDeleteAccessTokenRepository,
   type IAddAccountRepository,
@@ -7,7 +7,7 @@ import {
   type ILoadAccountByTokenRepository,
   type IUpdateAccessTokenRepository,
   type ILoadAccountByCPFRepository
-} from '@/core/ports/driven'
+} from '@/core'
 
 export class AccountRepository implements
   IAddAccountRepository,

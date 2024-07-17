@@ -3,7 +3,7 @@ import {
   NotFound,
   Unauthorized
 } from '@/adapters/errors'
-import { type IHTTPResponse } from '@/core/ports/driving/presentation'
+import { type IHTTPResponse } from '@/core'
 
 export const ok = (data: any): IHTTPResponse => ({
   statusCode: 200,

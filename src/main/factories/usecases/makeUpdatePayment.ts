@@ -1,4 +1,4 @@
-import { type IUpdatePayment } from '@/core/ports/driving/services'
+import { type IUpdatePayment } from '@/core'
 import { PaymentRepository } from '@/adapters/repositories'
 import { UpdatePayment } from '@/usecases'
 

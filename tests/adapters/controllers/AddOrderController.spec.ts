@@ -1,11 +1,11 @@
-import { type Order, type OrderWithIds } from '@/domain/entities'
+import { type Order, type OrderWithIds } from '@/domain'
 import {
   type IValidation,
-  type IHTTPRequest
-} from '@/core/ports/driving/presentation'
+  type IHTTPRequest,
+  type IAddOrder
+} from '@/core'
 import { AddOrderController } from '@/adapters/controllers'
 import { badRequest, noContent, serverError } from '@/adapters/helpers'
-import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 
 const mockOrderWithIds = (): OrderWithIds => ({
   number: 1234,

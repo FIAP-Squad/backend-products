@@ -1,5 +1,4 @@
-import { type IValidation, type IHTTPRequest } from '@/core/ports/driving/presentation'
-import { type UpdatePaymentParams, type IUpdatePayment } from '@/core/ports/driving/services'
+import { type IValidation, type IHTTPRequest, type UpdatePaymentParams, type IUpdatePayment } from '@/core'
 import { UpdatePaymentController } from '@/adapters/controllers'
 import { badRequest, noContent, serverError } from '@/adapters/helpers'
 

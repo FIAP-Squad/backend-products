@@ -1,4 +1,4 @@
-import { type IDeleteAccessTokenRepository } from '@/core/ports/driven'
+import { type IDeleteAccessTokenRepository } from '@/core'
 import { Logout } from '@/usecases'
 
 const mockDeleteAccesstokenRepository = (): IDeleteAccessTokenRepository => {

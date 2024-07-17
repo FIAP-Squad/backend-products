@@ -1,5 +1,5 @@
 import { EmailValidation, RequiredFieldsValidation, ValidationComposite } from '@/adapters/validation'
-import { type IValidation } from '@/core/ports/driving/presentation'
+import { type IValidation } from '@/core'
 import { EmailValidatorAdapter } from '@/infrastructure/validators'
 
 export const makeLoginValidation = (): ValidationComposite => {

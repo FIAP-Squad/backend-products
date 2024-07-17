@@ -1,4 +1,4 @@
-import { type IEmailValidator } from '@/core/ports/driven/validators/IEmailValidator'
+import { type IEmailValidator } from '@/core'
 import { EmailValidation } from '@/adapters/validation'
 
 const mockEmailValidator = (): IEmailValidator => {

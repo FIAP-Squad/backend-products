@@ -1,7 +1,6 @@
 import { LoadProducts } from '@/usecases'
-import { type WithId, type Product } from '@/domain/entities'
-import { type ILoadProducts } from '@/core/ports/driving/services'
-import { type ILoadProductsRepository } from '@/core/ports/driven'
+import { type ILoadProducts, type ILoadProductsRepository } from '@/core'
+import { type WithId, type Product } from '@/domain'
 
 const mockProducts = (): Array<WithId<Product>> => ([
   {

@@ -1,6 +1,6 @@
-import { type Product } from '@/domain/entities'
+import { type Product } from '@/domain'
 import { AddProduct } from '@/usecases'
-import { type IAddProductRepository } from '@/core/ports/driven'
+import { type IAddProductRepository } from '@/core'
 
 const mockProduct = (): Product => ({
   category: 'any_category',

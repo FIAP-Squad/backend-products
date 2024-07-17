@@ -1,8 +1,8 @@
-import { type IUpdatePaymentRepository } from '@/core/ports/driven'
 import {
   type UpdatePaymentParams,
-  type IUpdatePayment
-} from '@/core/ports/driving/services'
+  type IUpdatePayment,
+  type IUpdatePaymentRepository
+} from '@/core'
 
 export class UpdatePayment implements IUpdatePayment {
   constructor (private readonly _repository: IUpdatePaymentRepository) { }

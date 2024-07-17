@@ -1,5 +1,5 @@
 import { DeleteProduct } from '@/usecases'
-import { type IDeleteProduct } from '@/core/ports/driving/services'
+import { type IDeleteProduct } from '@/core'
 import { ProductRepository } from '@/adapters/repositories'
 
 export const makeDbDeleteProduct = (): IDeleteProduct => {

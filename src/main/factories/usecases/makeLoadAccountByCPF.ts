@@ -1,4 +1,4 @@
-import { type ILoadAccountByCPF } from '@/core/ports/driving/services'
+import { type ILoadAccountByCPF } from '@/core'
 import { LoadACcountByCPF } from '@/usecases'
 import { AccountRepository } from '@/adapters/repositories'
 

@@ -1,6 +1,5 @@
-import { type Product } from '@/domain/entities'
-import { type ILoadProducts } from '@/core/ports/driving/services'
-import { type IHTTPRequest } from '@/core/ports/driving/presentation'
+import { type Product } from '@/domain'
+import { type ILoadProducts, type IHTTPRequest } from '@/core'
 import { LoadProductsController } from '@/adapters/controllers'
 import {
   ok,

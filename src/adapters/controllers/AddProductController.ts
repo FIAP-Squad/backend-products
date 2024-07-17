@@ -1,4 +1,3 @@
-import { type IAddProduct } from '@/core/ports/driving/services'
 import {
   badRequest,
   noContent,
@@ -8,8 +7,9 @@ import {
   type IController,
   type IValidation,
   type IHTTPRequest,
-  type IHTTPResponse
-} from '@/core/ports/driving/presentation'
+  type IHTTPResponse,
+  type IAddProduct
+} from '@/core'
 
 export class AddProductController implements IController {
   constructor (

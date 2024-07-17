@@ -1,17 +1,15 @@
 import {
-  type IAddProduct
-} from '@/core/ports/driving/services'
-import {
   type IHTTPRequest,
-  type IValidation
-} from '@/core/ports/driving/presentation'
+  type IValidation,
+  type IAddProduct
+} from '@/core'
 import { AddProductController } from '@/adapters/controllers'
 import {
   badRequest,
   serverError,
   noContent
 } from '@/adapters/helpers'
-import { type Product } from '@/domain/entities'
+import { type Product } from '@/domain'
 
 const mockProduct = (): Product => ({
   category: 'any_category',

@@ -1,10 +1,10 @@
 import {
   type IHTTPResponse,
   type IController,
-  type IValidation
-} from '@/core/ports/driving/presentation'
+  type IValidation,
+  type IAddOrder
+} from '@/core'
 import { badRequest, noContent, serverError } from '../helpers'
-import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 
 export class AddOrderController implements IController {
   constructor (

@@ -1,4 +1,4 @@
-import { type IAddAccount } from '@/core/ports/driving/services'
+import { type IAddAccount } from '@/core'
 import { AddAccount } from '@/usecases'
 import { BcryptAdapter } from '@/infrastructure/criptography'
 import { AccountRepository } from '@/adapters/repositories'

@@ -1,10 +1,10 @@
 import { AddAccount } from '@/usecases'
-import { type WithId, type Account } from '@/domain/entities'
+import { type WithId, type Account } from '@/domain'
 import {
   type IHasher,
   type IAddAccountRepository,
   type ILoadAccountByEmailRepository
-} from '@/core/ports/driven'
+} from '@/core'
 
 const mockHasher = (): IHasher => {
   class HasherStub implements IHasher {

@@ -1,4 +1,4 @@
-import { type IValidation } from '@/core/ports/driving/presentation'
+import { type IValidation } from '@/core'
 import { RequiredFieldsValidation, ValidationComposite } from '@/adapters/validation'
 import { makeAddOrderValidation } from '@/main/factories/validations'
 

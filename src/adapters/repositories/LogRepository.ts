@@ -1,5 +1,5 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { type ILogErrorRepository } from '@/core/ports/driven'
+import { type ILogErrorRepository } from '@/core'
 
 export class LogRepository implements ILogErrorRepository {
   async logError (stack: string): Promise<void> {

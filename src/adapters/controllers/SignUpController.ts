@@ -1,8 +1,4 @@
 import {
-  type IAddAccount,
-  type IAuthentication
-} from '@/core/ports/driving/services'
-import {
   ok,
   forbidden,
   badRequest,
@@ -12,8 +8,10 @@ import {
   type IController,
   type IValidation,
   type IHTTPRequest,
-  type IHTTPResponse
-} from '@/core/ports/driving/presentation'
+  type IHTTPResponse,
+  type IAddAccount,
+  type IAuthentication
+} from '@/core'
 import { EmailInUse } from '../errors'
 
 export class SignUpController implements IController {

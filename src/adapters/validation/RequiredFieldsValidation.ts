@@ -1,4 +1,4 @@
-import { type IValidation } from '@/core/ports/driving/presentation'
+import { type IValidation } from '@/core'
 import { MissingParam } from '@/adapters/errors'
 
 export class RequiredFieldsValidation implements IValidation {

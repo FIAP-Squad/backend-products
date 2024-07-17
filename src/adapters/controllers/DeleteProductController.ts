@@ -1,12 +1,12 @@
-import { type IDeleteProduct } from '@/core/ports/driving/services'
 import {
   noContent,
   serverError
 } from '@/adapters/helpers'
 import {
   type IController,
-  type IHTTPResponse
-} from '@/core/ports/driving/presentation'
+  type IHTTPResponse,
+  type IDeleteProduct
+} from '@/core'
 
 export class DeleteProductController implements IController {
   constructor (private readonly _service: IDeleteProduct) { }

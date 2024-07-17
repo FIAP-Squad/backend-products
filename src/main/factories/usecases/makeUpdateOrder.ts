@@ -1,4 +1,4 @@
-import { type IUpdateOrder } from '@/core/ports/driving/services'
+import { type IUpdateOrder } from '@/core'
 import { UpdateOrder } from '@/usecases'
 import { OrderRepository } from '@/adapters/repositories'
 

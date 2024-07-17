@@ -1,10 +1,10 @@
-import { type WithId, type Account } from '@/domain/entities'
-import { type IAddAccount } from '@/core/ports/driving/services'
+import { type WithId, type Account } from '@/domain'
 import {
   type IHasher,
   type IAddAccountRepository,
-  type ILoadAccountByEmailRepository
-} from '@/core/ports/driven'
+  type ILoadAccountByEmailRepository,
+  type IAddAccount
+} from '@/core'
 
 export class AddAccount implements IAddAccount {
   constructor (

@@ -1,10 +1,10 @@
-import { type IUpdateProduct } from '@/core/ports/driving/services'
 import {
   type IValidation,
   type IController,
   type IHTTPRequest,
-  type IHTTPResponse
-} from '@/core/ports/driving/presentation'
+  type IHTTPResponse,
+  type IUpdateProduct
+} from '@/core'
 import { badRequest, noContent, serverError } from '@/adapters/helpers'
 
 export class UpdateProductController implements IController {

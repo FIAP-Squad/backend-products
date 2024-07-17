@@ -1,8 +1,8 @@
-import { type Payment, type OrderWithIds } from '@/domain/entities'
+import { type Payment, type OrderWithIds } from '@/domain'
 import {
   type IAddPaymentRepository,
   type IAddOrderRepository
-} from '@/core/ports/driven'
+} from '@/core'
 import { AddOrder } from '@/usecases'
 
 const mockOrderWithIds = (): OrderWithIds => ({

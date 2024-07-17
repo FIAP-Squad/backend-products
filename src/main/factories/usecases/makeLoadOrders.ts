@@ -1,4 +1,4 @@
-import { type ILoadOrders } from '@/core/ports/driving/services'
+import { type ILoadOrders } from '@/core'
 import { LoadOrders } from '@/usecases'
 import { OrderRepository } from '@/adapters/repositories'
 

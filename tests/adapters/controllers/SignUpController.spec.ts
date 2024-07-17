@@ -1,11 +1,12 @@
-import { type WithId, type Account } from '@/domain/entities'
+import { type WithId, type Account } from '@/domain'
 import {
   type IAuthentication,
   type AuthenticationParams,
-  type IAddAccount
-} from '@/core/ports/driving/services'
+  type IAddAccount,
+  type IHTTPRequest,
+  type IValidation
+} from '@/core'
 import { SignUpController } from '@/adapters/controllers'
-import { type IHTTPRequest, type IValidation } from '@/core/ports/driving/presentation'
 import { ServerError, MissingParam, EmailInUse } from '@/adapters/errors'
 import { serverError, ok, badRequest, forbidden } from '@/adapters/helpers'
 

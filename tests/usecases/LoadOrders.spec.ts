@@ -1,6 +1,5 @@
-import { type WithId, type Order, type OrderWithIds } from '@/domain/entities'
-import { type ILoadOrders } from '@/core/ports/driving/services'
-import { type ILoadOrdersRepository } from '@/core/ports/driven'
+import { type WithId, type Order, type OrderWithIds } from '@/domain'
+import { type ILoadOrders, type ILoadOrdersRepository } from '@/core'
 import { LoadOrders } from '@/usecases'
 
 const mockOrderWithIds = (): Array<WithId<OrderWithIds>> => ([

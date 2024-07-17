@@ -1,6 +1,5 @@
+import { type IUpdateOrderRepository, type UpdateOrderParams } from '@/core'
 import { UpdateOrder } from '@/usecases'
-import { type IUpdateOrderRepository } from '@/core/ports/driven'
-import { type UpdateOrderParams } from '@/core/ports/driving/services'
 
 const mockUpdateParams = (): UpdateOrderParams => ({
   id: 'any_id',

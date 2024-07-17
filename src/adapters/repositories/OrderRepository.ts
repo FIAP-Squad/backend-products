@@ -3,15 +3,13 @@ import {
   type OrderWithIds,
   type Order,
   type WithId
-} from '@/domain/entities'
-import {
-  type UpdateOrderParams
-} from '@/core/ports/driving/services'
+} from '@/domain'
 import {
   type IUpdateOrderRepository,
   type IAddOrderRepository,
-  type ILoadOrdersRepository
-} from '@/core/ports/driven'
+  type ILoadOrdersRepository,
+  type UpdateOrderParams
+} from '@/core'
 
 export class OrderRepository implements IAddOrderRepository, IUpdateOrderRepository, ILoadOrdersRepository {
   async addOrder (params: OrderWithIds): Promise<string> {

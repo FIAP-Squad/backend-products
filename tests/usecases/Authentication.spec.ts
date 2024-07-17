@@ -1,12 +1,12 @@
 import { Authentication } from '@/usecases'
-import { type WithId, type Account } from '@/domain/entities'
-import { type AuthenticationParams } from '@/core/ports/driving/services'
+import { type WithId, type Account } from '@/domain'
 import {
   type IEncrypter,
   type IHashComparer,
+  type AuthenticationParams,
   type IUpdateAccessTokenRepository,
   type ILoadAccountByEmailRepository
-} from '@/core/ports/driven'
+} from '@/core'
 
 const mockAccount = (): WithId<Account> => ({
   id: 'any_id',

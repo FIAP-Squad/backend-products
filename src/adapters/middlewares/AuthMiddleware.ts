@@ -1,9 +1,9 @@
-import { type ILoadAccountByToken } from '@/core/ports/driving/services'
+import { type ILoadAccountByToken } from '@/core'
 import {
   type IMiddleware,
   type IHTTPRequest,
   type IHTTPResponse
-} from '@/core/ports/driving/presentation'
+} from '@/core'
 import { AccessDenied } from '@/adapters/errors'
 import { ok, forbidden, serverError } from '@/adapters/helpers'
 

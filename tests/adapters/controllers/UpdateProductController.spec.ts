@@ -1,5 +1,4 @@
-import { type IValidation, type IHTTPRequest } from '@/core/ports/driving/presentation'
-import { type UpdateProductParams, type IUpdateProduct } from '@/core/ports/driving/services'
+import { type IValidation, type IHTTPRequest, type UpdateProductParams, type IUpdateProduct } from '@/core'
 import { UpdateProductController } from '@/adapters/controllers'
 import { badRequest, noContent, serverError } from '@/adapters/helpers'
 

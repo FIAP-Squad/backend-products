@@ -1,4 +1,4 @@
-import { type ILogout } from '@/core/ports/driving/services'
+import { type ILogout } from '@/core'
 import { Logout } from '@/usecases'
 import { AccountRepository } from '@/adapters/repositories'
 

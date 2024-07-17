@@ -2,10 +2,10 @@ import {
   type IHTTPRequest,
   type IHTTPResponse,
   type IController,
-  type IValidation
-} from '@/core/ports/driving/presentation'
+  type IValidation,
+  type IUpdatePayment
+} from '@/core'
 import { badRequest, noContent, serverError } from '@/adapters/helpers'
-import { type IUpdatePayment } from '@/core/ports/driving/services'
 
 export class UpdatePaymentController implements IController {
   constructor (

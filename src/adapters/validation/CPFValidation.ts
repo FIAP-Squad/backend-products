@@ -1,5 +1,5 @@
 import { InvalidParam } from '@/adapters/errors'
-import { type IValidation } from '@/core/ports/driving/presentation'
+import { type IValidation } from '@/core'
 
 export class CPFValidation implements IValidation {
   constructor (private readonly field: string) { }

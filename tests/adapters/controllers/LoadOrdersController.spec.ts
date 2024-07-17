@@ -1,6 +1,5 @@
-import { type WithId, type Order, type OrderWithIds } from '@/domain/entities'
-import { type ILoadOrders } from '@/core/ports/driving/services'
-import { type IHTTPRequest } from '@/core/ports/driving/presentation'
+import { type WithId, type Order, type OrderWithIds } from '@/domain'
+import { type ILoadOrders, type IHTTPRequest } from '@/core'
 import { LoadOrdersController } from '@/adapters/controllers'
 import { noContent, serverError } from '@/adapters/helpers'
 

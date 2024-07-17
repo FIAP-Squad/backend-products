@@ -1,4 +1,3 @@
-import { type ILoadProducts } from '@/core/ports/driving/services'
 import {
   ok,
   noContent,
@@ -6,8 +5,9 @@ import {
 } from '@/adapters/helpers'
 import {
   type IController,
-  type IHTTPResponse
-} from '@/core/ports/driving/presentation'
+  type IHTTPResponse,
+  type ILoadProducts
+} from '@/core'
 
 export class LoadProductsController implements IController {
   constructor (private readonly _service: ILoadProducts) { }

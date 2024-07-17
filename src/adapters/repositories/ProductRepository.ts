@@ -1,12 +1,12 @@
 import { prismaClient } from '@/adapters/repositories/prismaClient'
-import { type Product } from '@/domain/entities'
+import { type Product } from '@/domain'
 import {
   type IAddProductRepository,
   type ILoadProductsRepository,
   type IDeleteProductRepository,
   type IUpdateProductRepository,
-  type UpdateProductParams
-} from '@/core/ports/driven'
+  type UpdateProductParamsRepository
+} from '@/core'
 
 export class ProductRepository implements
   IAddProductRepository,
@@ -35,7 +35,7 @@ export class ProductRepository implements
     await prismaClient.product.delete({ where: { id } })
   }
 
-  async update (params: UpdateProductParams): Promise<void> {
+  async update (params: UpdateProductParamsRepository): Promise<void> {
     const { id, body } = params
     await prismaClient.product.update({ where: { id }, data: { ...body } })
   }
