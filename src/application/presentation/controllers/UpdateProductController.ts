@@ -1,4 +1,4 @@
-import { type IUpdateProduct } from '@/core/ports/driving/services/IUpdateProducts'
+import { type IUpdateProduct } from '@/core/ports/driving/services'
 import {
   type IValidation,
   type IController,

@@ -1,15 +1,15 @@
 import { type IValidation, type IHTTPRequest } from '@/core/ports/driving/presentation'
-import { type UpdateProductParams, type IUpdateProduct } from '@/core/ports/driving/services'
-import { UpdateProductController } from '@/application/presentation/controllers'
+import { type UpdatePaymentParams, type IUpdatePayment } from '@/core/ports/driving/services'
+import { UpdatePaymentController } from '@/application/presentation/controllers'
 import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
 
-const mockUpdateProduct = (): IUpdateProduct => {
-  class UpdateProductStub implements IUpdateProduct {
-    async update (params: UpdateProductParams): Promise<void> {
+const mockUpdatePayment = (): IUpdatePayment => {
+  class UpdatePaymentStub implements IUpdatePayment {
+    async update (params: UpdatePaymentParams): Promise<void> {
       return await Promise.resolve(null)
     }
   }
-  return new UpdateProductStub()
+  return new UpdatePaymentStub()
 }
 
 const mockValidation = (): IValidation => {
@@ -23,11 +23,7 @@ const mockValidation = (): IValidation => {
 
 const mockRequest = (): IHTTPRequest => ({
   body: {
-    category: 'other_category',
-    name: 'any_name',
-    price: 1234,
-    description: 'any_description',
-    image: 'any_image'
+    status: 'any_status'
   },
   params: {
     id: 'any_id'
@@ -35,35 +31,31 @@ const mockRequest = (): IHTTPRequest => ({
 })
 
 type SutTypes = {
-  sut: UpdateProductController
-  updateProductStub: IUpdateProduct
+  sut: UpdatePaymentController
+  updatePaymentStub: IUpdatePayment
   validationStub: IValidation
 }
 
 const mockSut = (): SutTypes => {
   const validationStub = mockValidation()
-  const updateProductStub = mockUpdateProduct()
-  const sut = new UpdateProductController(validationStub, updateProductStub)
+  const updatePaymentStub = mockUpdatePayment()
+  const sut = new UpdatePaymentController(validationStub, updatePaymentStub)
   return {
     sut,
-    updateProductStub,
+    updatePaymentStub,
     validationStub
   }
 }
 
-describe('UpdateProductContrller', () => {
-  test('Should call IUpdateProduct with correct values', async () => {
-    const { sut, updateProductStub } = mockSut()
-    const updateSpy = jest.spyOn(updateProductStub, 'update')
+describe('UpdatePaymentController', () => {
+  test('Should call IUpdatePayment with correct values', async () => {
+    const { sut, updatePaymentStub } = mockSut()
+    const updateSpy = jest.spyOn(updatePaymentStub, 'update')
     await sut.handle(mockRequest())
     expect(updateSpy).toHaveBeenCalledWith({
       id: 'any_id',
       body: {
-        category: 'other_category',
-        name: 'any_name',
-        price: 1234,
-        description: 'any_description',
-        image: 'any_image'
+        status: 'any_status'
       }
     })
   })
@@ -83,9 +75,9 @@ describe('UpdateProductContrller', () => {
     expect(response).toEqual(badRequest(new Error()))
   })
 
-  test('Should return 500 if IUpdateProduct throws', async () => {
-    const { sut, updateProductStub } = mockSut()
-    jest.spyOn(updateProductStub, 'update').mockReturnValueOnce(Promise.reject(new Error()))
+  test('Should return 500 if IUpdatePayment throws', async () => {
+    const { sut, updatePaymentStub } = mockSut()
+    jest.spyOn(updatePaymentStub, 'update').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })
