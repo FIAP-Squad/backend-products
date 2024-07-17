@@ -3,7 +3,7 @@ import {
   type IHTTPRequest
 } from '@/core/ports/driving/presentation'
 import { UpdateOrderController } from '@/adapters/controllers'
-import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
+import { badRequest, noContent, serverError } from '@/adapters/helpers'
 import {
   type IUpdateOrder,
   type UpdateOrderParams

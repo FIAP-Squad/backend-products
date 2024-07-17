@@ -7,14 +7,14 @@ import {
   forbidden,
   badRequest,
   serverError
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 import {
   type IController,
   type IValidation,
   type IHTTPRequest,
   type IHTTPResponse
 } from '@/core/ports/driving/presentation'
-import { EmailInUse } from '../../application/presentation/errors'
+import { EmailInUse } from '../errors'
 
 export class SignUpController implements IController {
   constructor (

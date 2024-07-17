@@ -5,7 +5,7 @@ import {
   type IHTTPRequest,
   type IHTTPResponse
 } from '@/core/ports/driving/presentation'
-import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
+import { badRequest, noContent, serverError } from '@/adapters/helpers'
 
 export class UpdateProductController implements IController {
   constructor (

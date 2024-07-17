@@ -1,4 +1,4 @@
-import { InvalidParam } from '@/application/presentation/errors'
+import { InvalidParam } from '@/adapters/errors'
 import { CompareFieldsValidation } from '@/application/validation'
 
 const mockSut = (): CompareFieldsValidation => new CompareFieldsValidation('field', 'fieldToCompare')

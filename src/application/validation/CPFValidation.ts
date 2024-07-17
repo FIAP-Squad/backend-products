@@ -1,4 +1,4 @@
-import { InvalidParam } from '@/application/presentation/errors'
+import { InvalidParam } from '@/adapters/errors'
 import { type IValidation } from '@/core/ports/driving/presentation'
 
 export class CPFValidation implements IValidation {

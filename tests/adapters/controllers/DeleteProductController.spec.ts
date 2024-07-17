@@ -4,7 +4,7 @@ import { DeleteProductController } from '@/adapters/controllers'
 import {
   serverError,
   noContent
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 
 const mockDeleteProduct = (): IDeleteProduct => {
   class DeleteProductStub implements IDeleteProduct {

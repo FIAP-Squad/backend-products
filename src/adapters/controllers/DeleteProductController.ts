@@ -2,7 +2,7 @@ import { type IDeleteProduct } from '@/core/ports/driving/services'
 import {
   noContent,
   serverError
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 import {
   type IController,
   type IHTTPResponse

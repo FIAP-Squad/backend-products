@@ -1,5 +1,5 @@
 import { type Product } from '@/core/entities'
-import { AddProduct } from '@/application/services'
+import { AddProduct } from '@/usecases'
 import { type IAddProductRepository } from '@/core/ports/driven'
 
 const mockProduct = (): Product => ({

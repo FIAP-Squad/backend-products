@@ -1,5 +1,5 @@
 import { type IUpdateProduct } from '@/core/ports/driving/services'
-import { UpdateProduct } from '@/application/services'
+import { UpdateProduct } from '@/usecases'
 import { ProductRepository } from '@/adapters/repositories'
 
 export const makeDbUpdateProduct = (): IUpdateProduct => {

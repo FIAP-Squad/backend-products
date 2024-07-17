@@ -1,4 +1,4 @@
-import { LoadACcountByCPF } from '@/application/services'
+import { LoadACcountByCPF } from '@/usecases'
 import { type WithId, type Account } from '@/core/entities'
 import { type ILoadAccountByCPFRepository } from '@/core/ports/driven'
 

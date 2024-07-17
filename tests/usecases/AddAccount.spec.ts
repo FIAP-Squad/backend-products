@@ -1,4 +1,4 @@
-import { AddAccount } from '@/application/services'
+import { AddAccount } from '@/usecases'
 import { type WithId, type Account } from '@/core/entities'
 import {
   type IHasher,

@@ -1,6 +1,6 @@
 import { type IEmailValidator } from '@/core/ports/driven/validators'
 import { type IValidation } from '@/core/ports/driving/presentation'
-import { InvalidParam } from '@/application/presentation/errors'
+import { InvalidParam } from '@/adapters/errors'
 
 export class EmailValidation implements IValidation {
   constructor (

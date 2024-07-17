@@ -3,7 +3,7 @@ import {
   type IController,
   type IHTTPRequest, type IHTTPResponse
 } from '@/core/ports/driving/presentation'
-import { serverError } from '@/application/presentation/helpers'
+import { serverError } from '@/adapters/helpers'
 import { LogControllerDecorator } from '@/main/decorators'
 
 const mockController = (): IController => {

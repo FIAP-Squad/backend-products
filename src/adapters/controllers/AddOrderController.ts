@@ -3,7 +3,7 @@ import {
   type IController,
   type IValidation
 } from '@/core/ports/driving/presentation'
-import { badRequest, noContent, serverError } from '../../application/presentation/helpers'
+import { badRequest, noContent, serverError } from '../helpers'
 import { type IAddOrder } from '@/core/ports/driving/services/IAddOrder'
 
 export class AddOrderController implements IController {

@@ -1,5 +1,5 @@
 import { type IValidation } from '@/core/ports/driving/presentation'
-import { MissingField } from '@/application/presentation/errors'
+import { MissingField } from '@/adapters/errors'
 
 export class MandatoryFieldValidation implements IValidation {
   constructor (private readonly fieldNames: string[]) { }

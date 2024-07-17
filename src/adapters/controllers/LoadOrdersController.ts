@@ -3,7 +3,7 @@ import {
   type IHTTPResponse,
   type IController
 } from '@/core/ports/driving/presentation'
-import { noContent, ok, serverError } from '@/application/presentation/helpers'
+import { noContent, ok, serverError } from '@/adapters/helpers'
 
 export class LoadOrdersController implements IController {
   constructor (private readonly _service: ILoadOrders) { }

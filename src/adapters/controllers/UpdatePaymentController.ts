@@ -4,7 +4,7 @@ import {
   type IController,
   type IValidation
 } from '@/core/ports/driving/presentation'
-import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
+import { badRequest, noContent, serverError } from '@/adapters/helpers'
 import { type IUpdatePayment } from '@/core/ports/driving/services'
 
 export class UpdatePaymentController implements IController {

@@ -6,8 +6,8 @@ import {
 } from '@/core/ports/driving/services'
 import { SignUpController } from '@/adapters/controllers'
 import { type IHTTPRequest, type IValidation } from '@/core/ports/driving/presentation'
-import { ServerError, MissingParam, EmailInUse } from '@/application/presentation/errors'
-import { serverError, ok, badRequest, forbidden } from '@/application/presentation/helpers'
+import { ServerError, MissingParam, EmailInUse } from '@/adapters/errors'
+import { serverError, ok, badRequest, forbidden } from '@/adapters/helpers'
 
 const mockRequest = (): IHTTPRequest => ({
   body: {

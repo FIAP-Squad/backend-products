@@ -2,7 +2,7 @@ import { type WithId, type Order, type OrderWithIds } from '@/core/entities'
 import { type ILoadOrders } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { LoadOrdersController } from '@/adapters/controllers'
-import { noContent, serverError } from '@/application/presentation/helpers'
+import { noContent, serverError } from '@/adapters/helpers'
 
 const mockOrderWithIds = (): Array<WithId<OrderWithIds>> => ([
   {

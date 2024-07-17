@@ -1,5 +1,5 @@
 import { type ILogout } from '@/core/ports/driving/services'
-import { Logout } from '@/application/services'
+import { Logout } from '@/usecases'
 import { AccountRepository } from '@/adapters/repositories'
 
 export const makeDbLogout = (): ILogout => {

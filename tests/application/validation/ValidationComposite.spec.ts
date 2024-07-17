@@ -1,5 +1,5 @@
 import { type IValidation } from '@/core/ports/driving/presentation'
-import { MissingParam } from '@/application/presentation/errors'
+import { MissingParam } from '@/adapters/errors'
 import { ValidationComposite } from '@/application/validation'
 
 const mockValidation = (): IValidation => {

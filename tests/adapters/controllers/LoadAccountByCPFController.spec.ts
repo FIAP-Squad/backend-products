@@ -6,7 +6,7 @@ import {
   notFound,
   serverError,
   ok
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 
 const mockRequest = (): IHTTPRequest => ({
   params: {

@@ -2,7 +2,7 @@ import {
   ServerError,
   NotFound,
   Unauthorized
-} from '@/application/presentation/errors'
+} from '@/adapters/errors'
 import { type IHTTPResponse } from '@/core/ports/driving/presentation'
 
 export const ok = (data: any): IHTTPResponse => ({

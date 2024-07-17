@@ -6,7 +6,7 @@ import {
   ok,
   noContent,
   serverError
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 
 const mockProducts = (): Product[] => ([
   {

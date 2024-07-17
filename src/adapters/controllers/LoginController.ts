@@ -4,7 +4,7 @@ import {
   badRequest,
   serverError,
   unauthorized
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 import {
   type IController,
   type IValidation,

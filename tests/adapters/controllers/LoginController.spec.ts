@@ -5,13 +5,13 @@ import {
   type IHTTPRequest, type IValidation
 } from '@/core/ports/driving/presentation'
 import { LoginController } from '@/adapters/controllers'
-import { MissingParam } from '@/application/presentation/errors'
+import { MissingParam } from '@/adapters/errors'
 import {
   unauthorized,
   serverError,
   ok,
   badRequest
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 
 const mockAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {

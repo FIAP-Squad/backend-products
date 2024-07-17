@@ -3,7 +3,7 @@ import {
   type IAddPaymentRepository,
   type IAddOrderRepository
 } from '@/core/ports/driven'
-import { AddOrder } from '@/application/services'
+import { AddOrder } from '@/usecases'
 
 const mockOrderWithIds = (): OrderWithIds => ({
   number: 1234,

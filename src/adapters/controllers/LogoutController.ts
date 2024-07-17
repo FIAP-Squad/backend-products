@@ -1,6 +1,6 @@
 import { type ILogout } from '@/core/ports/driving/services'
 import { type IHTTPResponse, type IController, type IValidation } from '@/core/ports/driving/presentation'
-import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
+import { badRequest, noContent, serverError } from '@/adapters/helpers'
 
 export class LogoutController implements IController {
   constructor (

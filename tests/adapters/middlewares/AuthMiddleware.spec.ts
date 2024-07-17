@@ -1,13 +1,13 @@
 import { type WithId, type Account } from '@/core/entities'
 import { type ILoadAccountByToken } from '@/core/ports/driving/services'
 import { type IHTTPRequest } from '@/core/ports/driving/presentation'
-import { AuthMiddleware } from '@/application/presentation/middlewares'
-import { AccessDenied } from '@/application/presentation/errors'
+import { AuthMiddleware } from '@/adapters/middlewares'
+import { AccessDenied } from '@/adapters/errors'
 import {
   forbidden,
   ok,
   serverError
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 
 const mockAccount = (): WithId<Account> => ({
   id: 'valid_id',

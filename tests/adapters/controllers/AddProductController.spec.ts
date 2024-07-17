@@ -10,7 +10,7 @@ import {
   badRequest,
   serverError,
   noContent
-} from '@/application/presentation/helpers'
+} from '@/adapters/helpers'
 import { type Product } from '@/core/entities'
 
 const mockProduct = (): Product => ({

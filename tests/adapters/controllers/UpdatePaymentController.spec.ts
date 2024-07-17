@@ -1,7 +1,7 @@
 import { type IValidation, type IHTTPRequest } from '@/core/ports/driving/presentation'
 import { type UpdatePaymentParams, type IUpdatePayment } from '@/core/ports/driving/services'
 import { UpdatePaymentController } from '@/adapters/controllers'
-import { badRequest, noContent, serverError } from '@/application/presentation/helpers'
+import { badRequest, noContent, serverError } from '@/adapters/helpers'
 
 const mockUpdatePayment = (): IUpdatePayment => {
   class UpdatePaymentStub implements IUpdatePayment {

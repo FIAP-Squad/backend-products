@@ -4,8 +4,8 @@ import {
   type IHTTPRequest,
   type IHTTPResponse
 } from '@/core/ports/driving/presentation'
-import { AccessDenied } from '@/application/presentation/errors'
-import { ok, forbidden, serverError } from '@/application/presentation/helpers'
+import { AccessDenied } from '@/adapters/errors'
+import { ok, forbidden, serverError } from '@/adapters/helpers'
 
 export class AuthMiddleware implements IMiddleware {
   constructor (

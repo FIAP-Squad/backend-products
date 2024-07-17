@@ -1,5 +1,5 @@
 import { type IAddProduct } from '@/core/ports/driving/services'
-import { AddProduct } from '@/application/services'
+import { AddProduct } from '@/usecases'
 import { ProductRepository } from '@/adapters/repositories'
 
 export const makeDbAddProduct = (): IAddProduct => {

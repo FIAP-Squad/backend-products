@@ -1,6 +1,6 @@
 import env from '@/main/config/env'
 import { type IAuthentication } from '@/core/ports/driving/services'
-import { Authentication } from '@/application/services'
+import { Authentication } from '@/usecases'
 import { AccountRepository } from '@/adapters/repositories'
 import { BcryptAdapter, JwtAdapter } from '@/infrastructure/criptography'
 
