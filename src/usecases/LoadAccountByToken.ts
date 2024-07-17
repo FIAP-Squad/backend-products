@@ -7,7 +7,7 @@ export class LoadAccountByToken implements ILoadAccountByToken {
     private readonly _repository: ILoadAccountByTokenRepository
   ) { }
 
-  async load (accessToken: string, role?: string): Promise<WithId<Account>> {
+  async execute (accessToken: string, role?: string): Promise<WithId<Account>> {
     let token: string
     try { token = await this.decrypt.decrypt(accessToken) } catch (error) { return null }
     if (token) {

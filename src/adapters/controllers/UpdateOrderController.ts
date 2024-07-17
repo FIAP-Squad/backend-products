@@ -19,7 +19,7 @@ export class UpdateOrderController implements IController {
       if (error) return badRequest(error)
       const { id } = params
       const { status } = body
-      await this._usecase.update({ id, status })
+      await this._usecase.execute({ id, status })
       return noContent()
     } catch (error) {
       return serverError(error)

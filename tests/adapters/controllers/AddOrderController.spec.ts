@@ -42,7 +42,7 @@ const mockValidation = (): IValidation => {
 
 const mockAddOrder = (): IAddOrder => {
   class AddOrderStub implements IAddOrder {
-    async add (order: Order): Promise<void> {
+    async execute (order: Order): Promise<void> {
       return await Promise.resolve(null)
     }
   }
@@ -85,7 +85,7 @@ describe('AddOrderController', () => {
 
   test('Should call IAddOrder with correct values', async () => {
     const { sut, addOrderStub } = mockSut()
-    const addOrderSpy = jest.spyOn(addOrderStub, 'add')
+    const addOrderSpy = jest.spyOn(addOrderStub, 'execute')
     const request = mockRequest()
     await sut.handle(request)
     expect(addOrderSpy).toHaveBeenCalledWith(request.body)
@@ -93,7 +93,7 @@ describe('AddOrderController', () => {
 
   test('Should return 500 if IAddOrder throws', async () => {
     const { sut, addOrderStub } = mockSut()
-    jest.spyOn(addOrderStub, 'add').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(addOrderStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })

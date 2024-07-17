@@ -40,7 +40,7 @@ const mockRequest = (): IHTTPRequest => ({
 
 const mockLoadOrderStub = (): ILoadOrders => {
   class LoadOrdersStub implements ILoadOrders {
-    async loadAll (): Promise<Array<WithId<Order>>> {
+    async execute (): Promise<Array<WithId<Order>>> {
       return await Promise.resolve(mockOrderWithIds())
     }
   }
@@ -64,28 +64,28 @@ const mockSut = (): SutType => {
 describe('LoadOrder IController', () => {
   test('Should call ILoadOrders', async () => {
     const { sut, loadOrdersStub } = mockSut()
-    const loadSpy = jest.spyOn(loadOrdersStub, 'loadAll')
+    const loadSpy = jest.spyOn(loadOrdersStub, 'execute')
     await sut.handle({})
     expect(loadSpy).toHaveBeenCalledWith({})
   })
 
   test('Should return an order on success', async () => {
     const { sut, loadOrdersStub } = mockSut()
-    jest.spyOn(loadOrdersStub, 'loadAll').mockReturnValueOnce(Promise.resolve([mockOrderWithIds()[1]]))
+    jest.spyOn(loadOrdersStub, 'execute').mockReturnValueOnce(Promise.resolve([mockOrderWithIds()[1]]))
     const response = await sut.handle(mockRequest())
     expect(response.body.length).toEqual(1)
   })
 
   test('Should return 204 LoadOrder returns empty', async () => {
     const { sut, loadOrdersStub } = mockSut()
-    jest.spyOn(loadOrdersStub, 'loadAll').mockReturnValueOnce(Promise.resolve([]))
+    jest.spyOn(loadOrdersStub, 'execute').mockReturnValueOnce(Promise.resolve([]))
     const response = await sut.handle({})
     expect(response).toEqual(noContent())
   })
 
   test('Should 500 if ILoadOrders throws', async () => {
     const { sut, loadOrdersStub } = mockSut()
-    jest.spyOn(loadOrdersStub, 'loadAll').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(loadOrdersStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle({})
     expect(response).toEqual(serverError(new Error()))
   })

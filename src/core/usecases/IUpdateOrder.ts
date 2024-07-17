@@ -4,5 +4,5 @@ export type UpdateOrderParams = {
 }
 
 export interface IUpdateOrder {
-  update: (params: UpdateOrderParams) => Promise<void>
+  execute: (params: UpdateOrderParams) => Promise<void>
 }

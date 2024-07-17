@@ -35,7 +35,7 @@ const mockValidation = (): IValidation => {
 
 const mockAddProduct = (): IAddProduct => {
   class AddProductStub implements IAddProduct {
-    async add (data: Product): Promise<void> {
+    async execute (data: Product): Promise<void> {
       return await Promise.resolve()
     }
   }
@@ -79,7 +79,7 @@ describe('Add Product IController', () => {
 
   test('Should call IAddProduct usign correct values', async () => {
     const { sut, addProductStub } = mockSut()
-    const addProductSpy = jest.spyOn(addProductStub, 'add')
+    const addProductSpy = jest.spyOn(addProductStub, 'execute')
     const request = mockRequest()
     await sut.handle(request)
     expect(addProductSpy).toHaveBeenCalledWith(request.body)
@@ -87,14 +87,14 @@ describe('Add Product IController', () => {
 
   test('Should return 500 if IAddProduct throws', async () => {
     const { sut, addProductStub } = mockSut()
-    jest.spyOn(addProductStub, 'add').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(addProductStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })
 
   test('Should return 204 on success', async () => {
     const { sut, addProductStub } = mockSut()
-    jest.spyOn(addProductStub, 'add')
+    jest.spyOn(addProductStub, 'execute')
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(noContent())
   })

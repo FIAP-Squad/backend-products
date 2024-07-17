@@ -48,20 +48,20 @@ describe('LoadProducts', () => {
   test('Should call ILoadProductsRepository', async () => {
     const { sut, loadProductsRepositoryStub } = mockSut()
     const loadAllSpy = jest.spyOn(loadProductsRepositoryStub, 'loadAll')
-    await sut.load({})
+    await sut.execute({})
     expect(loadAllSpy).toHaveBeenCalled()
   })
 
   test('Should return a list of Products on success', async () => {
     const { sut } = mockSut()
-    const products = await sut.load({})
+    const products = await sut.execute({})
     expect(products).toEqual(mockProducts())
   })
 
   test('Should throw if ILoadProductsRepository throws', async () => {
     const { sut, loadProductsRepositoryStub } = mockSut()
     jest.spyOn(loadProductsRepositoryStub, 'loadAll').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.load({})
+    const promise = sut.execute({})
     await expect(promise).rejects.toThrow()
   })
 })

@@ -11,7 +11,7 @@ export class AddOrder implements IAddOrder {
     private readonly _paymentRepository: IAddPaymentRepository
   ) { }
 
-  async add (params: OrderWithIds): Promise<void> {
+  async execute (params: OrderWithIds): Promise<void> {
     const orderId = await this._orderRepository.addOrder(params)
     const { payment } = params
     payment.orderId = orderId

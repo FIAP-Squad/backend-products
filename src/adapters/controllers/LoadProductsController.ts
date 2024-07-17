@@ -15,7 +15,7 @@ export class LoadProductsController implements IController {
   async handle ({ query }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
       const filter = query ? { ...query } : {}
-      const products = await this._service.load(filter)
+      const products = await this._service.execute(filter)
       return (products.length > 0) ? ok(products) : noContent()
     } catch (error) {
       return serverError(error)

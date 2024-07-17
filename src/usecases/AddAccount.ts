@@ -13,7 +13,7 @@ export class AddAccount implements IAddAccount {
     private readonly _queryRepository: ILoadAccountByEmailRepository
   ) { }
 
-  async add (params: Account): Promise<WithId<Account>> {
+  async execute (params: Account): Promise<WithId<Account>> {
     const account = await this._queryRepository.loadByEmail(params.email)
     if (!account) {
       const hashedPassword = await this._hasher.hash(params.password)

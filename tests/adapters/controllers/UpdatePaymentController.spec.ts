@@ -4,7 +4,7 @@ import { badRequest, noContent, serverError } from '@/adapters/helpers'
 
 const mockUpdatePayment = (): IUpdatePayment => {
   class UpdatePaymentStub implements IUpdatePayment {
-    async update (params: UpdatePaymentParams): Promise<void> {
+    async execute (params: UpdatePaymentParams): Promise<void> {
       return await Promise.resolve(null)
     }
   }
@@ -49,7 +49,7 @@ const mockSut = (): SutTypes => {
 describe('UpdatePaymentController', () => {
   test('Should call IUpdatePayment with correct values', async () => {
     const { sut, updatePaymentStub } = mockSut()
-    const updateSpy = jest.spyOn(updatePaymentStub, 'update')
+    const updateSpy = jest.spyOn(updatePaymentStub, 'execute')
     await sut.handle(mockRequest())
     expect(updateSpy).toHaveBeenCalledWith({
       id: 'any_id',
@@ -76,7 +76,7 @@ describe('UpdatePaymentController', () => {
 
   test('Should return 500 if IUpdatePayment throws', async () => {
     const { sut, updatePaymentStub } = mockSut()
-    jest.spyOn(updatePaymentStub, 'update').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(updatePaymentStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })

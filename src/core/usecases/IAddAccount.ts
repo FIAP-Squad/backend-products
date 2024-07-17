@@ -1,5 +1,5 @@
 import { type WithId, type Account } from '@/domain'
 
 export interface IAddAccount {
-  add: (params: Account) => Promise<WithId<Account>>
+  execute: (params: Account) => Promise<WithId<Account>>
 }

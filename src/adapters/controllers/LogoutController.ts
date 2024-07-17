@@ -18,7 +18,7 @@ export class LogoutController implements IController {
       const error = this._validation.validate(body)
       if (error) return badRequest(error)
       const { email } = body
-      await this._service.logout(email)
+      await this._service.execute(email)
       return noContent()
     } catch (error) {
       return serverError(error)

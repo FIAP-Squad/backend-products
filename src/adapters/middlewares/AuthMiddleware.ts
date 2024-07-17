@@ -1,8 +1,8 @@
-import { type ILoadAccountByToken } from '@/core'
 import {
   type IMiddleware,
   type IHTTPRequest,
-  type IHTTPResponse
+  type IHTTPResponse,
+  type ILoadAccountByToken
 } from '@/core'
 import { AccessDenied } from '@/adapters/errors'
 import { ok, forbidden, serverError } from '@/adapters/helpers'
@@ -19,7 +19,7 @@ export class AuthMiddleware implements IMiddleware {
       if (!authToken) return forbidden(new AccessDenied())
       const [, token] = authToken.split(' ')
       if (token) {
-        const account = await this.loadAccountByToken.load(token, this.role)
+        const account = await this.loadAccountByToken.execute(token, this.role)
         if (account) return ok({ accountId: account.id })
       }
       return forbidden(new AccessDenied())

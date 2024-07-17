@@ -42,14 +42,14 @@ describe('IUpdateProduct Usecase', () => {
   test('Should call IUpdateProduct Repository with correct values', async () => {
     const { sut, updateProductRepositoryStub } = mockSut()
     const updateSpy = jest.spyOn(updateProductRepositoryStub, 'update')
-    await sut.update(updateParams())
+    await sut.execute(updateParams())
     expect(updateSpy).toHaveBeenCalledWith(updateParams())
   })
 
   test('Shoud throw Error if IUpdateProductRepository Throw Error', async () => {
     const { sut, updateProductRepositoryStub } = mockSut()
     jest.spyOn(updateProductRepositoryStub, 'update').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.update(updateParams())
+    const promise = sut.execute(updateParams())
     await expect(promise).rejects.toThrow()
   })
 })

@@ -15,7 +15,7 @@ export class Authentication implements IAuthentication {
     private readonly updateRepository: IUpdateAccessTokenRepository
   ) { }
 
-  async auth (params: AuthenticationParams): Promise<string> {
+  async execute (params: AuthenticationParams): Promise<string> {
     const account = await this.loadRepository.loadByEmail(params.email)
     if (account) {
       const isValid = await this.hashComparer.compare(params.password, account.password)

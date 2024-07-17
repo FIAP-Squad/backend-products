@@ -1,3 +1,3 @@
 export interface ILogout {
-  logout: (email: string) => Promise<void>
+  execute: (email: string) => Promise<void>
 }

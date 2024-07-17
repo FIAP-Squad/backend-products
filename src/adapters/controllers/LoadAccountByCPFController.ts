@@ -15,7 +15,7 @@ export class LoadAccountByCPFController implements IController {
   async handle ({ params }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
       const { cpf } = params
-      const account = await this._service.loadByCpf(cpf)
+      const account = await this._service.execute(cpf)
       if (!account) return notFound()
       return ok(account)
     } catch (error) {

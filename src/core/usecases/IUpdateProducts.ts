@@ -6,5 +6,5 @@ export type UpdateProductParams = {
 }
 
 export interface IUpdateProduct {
-  update: (params: UpdateProductParams) => Promise<void>
+  execute: (params: UpdateProductParams) => Promise<void>
 }

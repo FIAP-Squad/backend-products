@@ -37,20 +37,20 @@ describe('LoadACcountByCPF Usecase', () => {
   test('Should call ILoadAccountByCPFRepository with correct values', async () => {
     const { sut, loadAccountByCPFRepositoryStub } = mockSut()
     const loadByCpfStub = jest.spyOn(loadAccountByCPFRepositoryStub, 'loadByCpf')
-    await sut.loadByCpf('valid_cpf')
+    await sut.execute('valid_cpf')
     expect(loadByCpfStub).toHaveBeenCalledWith('valid_cpf')
   })
 
   test('Should thorws if ILoadAccountByCPFRepository throws', async () => {
     const { sut, loadAccountByCPFRepositoryStub } = mockSut()
     jest.spyOn(loadAccountByCPFRepositoryStub, 'loadByCpf').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.loadByCpf('valid_cpf')
+    const promise = sut.execute('valid_cpf')
     await expect(promise).rejects.toThrow()
   })
 
   test('Should return account on success', async () => {
     const { sut } = mockSut()
-    const account = await sut.loadByCpf('valid_cpf')
+    const account = await sut.execute('valid_cpf')
     expect(account).toEqual(mockAccount())
   })
 })

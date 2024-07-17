@@ -6,5 +6,5 @@ export type UpdatePaymentParams = {
 }
 
 export interface IUpdatePayment {
-  update: (params: UpdatePaymentParams) => Promise<void>
+  execute: (params: UpdatePaymentParams) => Promise<void>
 }

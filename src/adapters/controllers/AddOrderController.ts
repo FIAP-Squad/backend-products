@@ -17,7 +17,7 @@ export class AddOrderController implements IController {
     try {
       const error = this._validation.validate(body)
       if (error) return badRequest(error)
-      await this._usecase.add(body)
+      await this._usecase.execute(body)
       return noContent()
     } catch (error) { return serverError(error) }
   }

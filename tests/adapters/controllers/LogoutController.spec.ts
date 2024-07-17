@@ -19,7 +19,7 @@ export type IRequestLogout = {
 
 const mockDeleteAccessToken = (): ILogout => {
   class LogoutStub implements ILogout {
-    async logout (token: string): Promise<void> {
+    async execute (token: string): Promise<void> {
       await Promise.resolve()
     }
   }
@@ -70,7 +70,7 @@ describe('ILogout IController', () => {
 
   test('Should call ILogout with correct values', async () => {
     const { sut, logoutStub } = mockSut()
-    const logoutSpy = jest.spyOn(logoutStub, 'logout')
+    const logoutSpy = jest.spyOn(logoutStub, 'execute')
     const request = mockRequest()
     const { email } = request.body
     await sut.handle(request)
@@ -79,7 +79,7 @@ describe('ILogout IController', () => {
 
   test('Should return 500 if ILogout throws', async () => {
     const { sut, logoutStub } = mockSut()
-    jest.spyOn(logoutStub, 'logout').mockReturnValue(Promise.reject(new Error()))
+    jest.spyOn(logoutStub, 'execute').mockReturnValue(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })

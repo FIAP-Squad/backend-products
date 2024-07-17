@@ -38,14 +38,14 @@ describe('IUpdatePayment Usecase', () => {
   test('Should call IUpdatePayment Repository with correct values', async () => {
     const { sut, updatePaymentRepositoryStub } = mockSut()
     const updateSpy = jest.spyOn(updatePaymentRepositoryStub, 'update')
-    await sut.update(updatePaymentParams())
+    await sut.execute(updatePaymentParams())
     expect(updateSpy).toHaveBeenCalledWith(updatePaymentParams())
   })
 
   test('Shoud throw Error if IUpdatePaymentRepository Throw Error', async () => {
     const { sut, updatePaymentRepositoryStub } = mockSut()
     jest.spyOn(updatePaymentRepositoryStub, 'update').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.update(updatePaymentParams())
+    const promise = sut.execute(updatePaymentParams())
     await expect(promise).rejects.toThrow()
   })
 })

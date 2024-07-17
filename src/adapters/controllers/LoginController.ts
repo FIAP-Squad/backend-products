@@ -23,7 +23,7 @@ export class LoginController implements IController {
       const error = this._validation.validate(body)
       if (error) return badRequest(error)
       const { email, password } = body
-      const accessToken = await this._usecase.auth({ email, password })
+      const accessToken = await this._usecase.execute({ email, password })
       if (!accessToken) return unauthorized()
       return ok({ access_token: accessToken })
     } catch (error) {

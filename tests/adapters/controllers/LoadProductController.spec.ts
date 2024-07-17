@@ -26,7 +26,7 @@ const mockProducts = (): Product[] => ([
 
 const mockLoadProducts = (): ILoadProducts => {
   class LoadProductsStub implements ILoadProducts {
-    async load (): Promise<Product[]> {
+    async execute (): Promise<Product[]> {
       return await Promise.resolve(mockProducts())
     }
   }
@@ -56,7 +56,7 @@ const mockSut = (): SutType => {
 describe('ILoadProducts IController', () => {
   test('Should call ILoadProducts', async () => {
     const { sut, loadProductsStub } = mockSut()
-    const loadSpy = jest.spyOn(loadProductsStub, 'load')
+    const loadSpy = jest.spyOn(loadProductsStub, 'execute')
     await sut.handle({})
     expect(loadSpy).toHaveBeenCalledWith({})
   })
@@ -69,21 +69,21 @@ describe('ILoadProducts IController', () => {
 
   test('Should return a product on success', async () => {
     const { sut, loadProductsStub } = mockSut()
-    jest.spyOn(loadProductsStub, 'load').mockReturnValueOnce(Promise.resolve([mockProducts()[1]]))
+    jest.spyOn(loadProductsStub, 'execute').mockReturnValueOnce(Promise.resolve([mockProducts()[1]]))
     const response = await sut.handle(mockRequest())
     expect(response.body.length).toEqual(1)
   })
 
   test('Should return 204 LoadProduct returns empty', async () => {
     const { sut, loadProductsStub } = mockSut()
-    jest.spyOn(loadProductsStub, 'load').mockReturnValueOnce(Promise.resolve([]))
+    jest.spyOn(loadProductsStub, 'execute').mockReturnValueOnce(Promise.resolve([]))
     const response = await sut.handle({})
     expect(response).toEqual(noContent())
   })
 
   test('Should 500 if ILoadProducts throws', async () => {
     const { sut, loadProductsStub } = mockSut()
-    jest.spyOn(loadProductsStub, 'load').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(loadProductsStub, 'execute').mockReturnValueOnce(Promise.reject(new Error()))
     const response = await sut.handle({})
     expect(response).toEqual(serverError(new Error()))
   })

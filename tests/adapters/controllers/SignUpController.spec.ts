@@ -37,7 +37,7 @@ const mockAddAccountParams = (): Account => ({
 
 const mockAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth (authentication: AuthenticationParams): Promise<string> {
+    async execute (authentication: AuthenticationParams): Promise<string> {
       return await Promise.resolve('any_token')
     }
   }
@@ -46,7 +46,7 @@ const mockAuthentication = (): IAuthentication => {
 
 const mockAddAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
-    async add (account: Account): Promise<WithId<Account>> {
+    async execute (account: Account): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }
@@ -85,7 +85,7 @@ const mockSut = (): SutTypes => {
 describe('SignUp IController', () => {
   test('Should return 500 if IAddAccount throws Exception', async () => {
     const { sut, addAccountStub } = mockSut()
-    jest.spyOn(addAccountStub, 'add').mockImplementationOnce(async () => {
+    jest.spyOn(addAccountStub, 'execute').mockImplementationOnce(async () => {
       return await Promise.reject(new Error())
     })
     const response = await sut.handle(mockRequest())
@@ -100,7 +100,7 @@ describe('SignUp IController', () => {
 
   test('Should call IAddAccount with correct values', async () => {
     const { sut, addAccountStub } = mockSut()
-    const addSpy = jest.spyOn(addAccountStub, 'add')
+    const addSpy = jest.spyOn(addAccountStub, 'execute')
     await sut.handle(mockRequest())
     expect(addSpy).toHaveBeenCalledWith(mockAddAccountParams())
   })
@@ -122,7 +122,7 @@ describe('SignUp IController', () => {
 
   test('Should call IAuthentication with correct values', async () => {
     const { sut, authenticationStub } = mockSut()
-    const authSpy = jest.spyOn(authenticationStub, 'auth')
+    const authSpy = jest.spyOn(authenticationStub, 'execute')
     await sut.handle(mockRequest())
     expect(authSpy).toHaveBeenCalledWith({
       email: 'any_email@mail.com',
@@ -132,14 +132,14 @@ describe('SignUp IController', () => {
 
   test('Should return 500 if IAuthentication throws', async () => {
     const { sut, authenticationStub } = mockSut()
-    jest.spyOn(authenticationStub, 'auth').mockReturnValue(Promise.reject(new Error()))
+    jest.spyOn(authenticationStub, 'execute').mockReturnValue(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })
 
   test('Should return 403 if IAddAccount returns null', async () => {
     const { sut, addAccountStub } = mockSut()
-    jest.spyOn(addAccountStub, 'add').mockReturnValueOnce(Promise.resolve(null))
+    jest.spyOn(addAccountStub, 'execute').mockReturnValueOnce(Promise.resolve(null))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(forbidden(new EmailInUse()))
   })

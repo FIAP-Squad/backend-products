@@ -29,7 +29,7 @@ interface SutTypes {
 
 const mockLoadAccountByToken = (): ILoadAccountByToken => {
   class LoadAccountByTokenStub implements ILoadAccountByToken {
-    async load (accessToken: string, role?: string): Promise<WithId<Account>> {
+    async execute (accessToken: string, role?: string): Promise<WithId<Account>> {
       return await Promise.resolve(mockAccount())
     }
   }
@@ -60,7 +60,7 @@ describe('Auth Middleware', () => {
     const role = 'any_role'
     const { sut, loadAccountByTokenStub } = mockSut(role)
     const request: IHTTPRequest = mockRequest()
-    const loadSpy = jest.spyOn(loadAccountByTokenStub, 'load')
+    const loadSpy = jest.spyOn(loadAccountByTokenStub, 'execute')
     await sut.handle(request)
     expect(loadSpy).toHaveBeenCalledWith('any_token', 'any_role')
   })
@@ -69,7 +69,7 @@ describe('Auth Middleware', () => {
     const role = 'any_role'
     const { sut, loadAccountByTokenStub } = mockSut(role)
     const request: IHTTPRequest = mockRequest()
-    jest.spyOn(loadAccountByTokenStub, 'load').mockReturnValueOnce(Promise.resolve(null))
+    jest.spyOn(loadAccountByTokenStub, 'execute').mockReturnValueOnce(Promise.resolve(null))
     const response = await sut.handle(request)
     expect(response).toEqual(forbidden(new AccessDenied()))
   })
@@ -83,7 +83,7 @@ describe('Auth Middleware', () => {
 
   test('Should return 500 if ILoadAccountByToken throws', async () => {
     const { sut, loadAccountByTokenStub } = mockSut()
-    jest.spyOn(loadAccountByTokenStub, 'load').mockImplementationOnce(() => {
+    jest.spyOn(loadAccountByTokenStub, 'execute').mockImplementationOnce(() => {
       throw new Error()
     })
     const response = await sut.handle(mockRequest())

@@ -72,21 +72,21 @@ describe('AddAccount Usecase', () => {
   test('Shoud call IHasher with correct password', async () => {
     const { sut, hasherStub } = mockSut()
     const hasherSpy = jest.spyOn(hasherStub, 'hash')
-    await sut.add(mockAccount())
+    await sut.execute(mockAccount())
     expect(hasherSpy).toHaveBeenCalledWith('hashed_password')
   })
 
   test('Shoud throw Error if IHasher Throw Error', async () => {
     const { sut, hasherStub } = mockSut()
     jest.spyOn(hasherStub, 'hash').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.add(mockAccount())
+    const promise = sut.execute(mockAccount())
     await expect(promise).rejects.toThrow()
   })
 
   test('Shoud call IAddAccountRepository with correct values', async () => {
     const { sut, addAccountRepositoryStub } = mockSut()
     const addSpy = jest.spyOn(addAccountRepositoryStub, 'add')
-    await sut.add(mockAccount())
+    await sut.execute(mockAccount())
     expect(addSpy).toHaveBeenCalledWith({
       name: 'valid_name',
       cpf: 'valid_cpf',
@@ -97,21 +97,21 @@ describe('AddAccount Usecase', () => {
 
   test('Shoud return an Account on success', async () => {
     const { sut } = mockSut()
-    const account = await sut.add(mockAccount())
+    const account = await sut.execute(mockAccount())
     expect(account).toEqual(mockAccountWithId())
   })
 
   test('Shoud throw Error if IHasher Throw Error', async () => {
     const { sut, addAccountRepositoryStub } = mockSut()
     jest.spyOn(addAccountRepositoryStub, 'add').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.add(mockAccount())
+    const promise = sut.execute(mockAccount())
     await expect(promise).rejects.toThrow()
   })
 
   test('Should call ILoadAccountByEmailRepository with correct email', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = mockSut()
     const loadByEmailSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
-    await sut.add(mockAccount())
+    await sut.execute(mockAccount())
     expect(loadByEmailSpy).toHaveBeenCalledWith('valid_email@mail.com')
   })
 })

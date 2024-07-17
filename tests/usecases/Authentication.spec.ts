@@ -89,76 +89,76 @@ describe('Authentication UseCase', () => {
   test('Should call ILoadAccountByEmailRepository with correct email', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = mockSut()
     const loadByEmailSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
-    await sut.auth(mockAuthentication())
+    await sut.execute(mockAuthentication())
     expect(loadByEmailSpy).toHaveBeenCalledWith('any_email@mail.com')
   })
 
   test('Should throw if ILoadAccountByEmailRepository throws', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = mockSut()
     jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.auth(mockAuthentication())
+    const promise = sut.execute(mockAuthentication())
     await expect(promise).rejects.toThrow()
   })
 
   test('Should return null if ILoadAccountByEmailRepository returns null', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = mockSut()
     jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockImplementationOnce(null)
-    const accessToken = await sut.auth(mockAuthentication())
+    const accessToken = await sut.execute(mockAuthentication())
     expect(accessToken).toBeNull()
   })
 
   test('Should call IHashComparer with correct values', async () => {
     const { sut, hashComparerStub } = mockSut()
     const compareSpy = jest.spyOn(hashComparerStub, 'compare')
-    await sut.auth(mockAuthentication())
+    await sut.execute(mockAuthentication())
     expect(compareSpy).toHaveBeenCalledWith('any_password', 'hashed_password')
   })
 
   test('Should throw if HasComparer throws', async () => {
     const { sut, hashComparerStub } = mockSut()
     jest.spyOn(hashComparerStub, 'compare').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.auth(mockAuthentication())
+    const promise = sut.execute(mockAuthentication())
     await expect(promise).rejects.toThrow()
   })
 
   test('Should return null if IHashComparer returns false', async () => {
     const { sut, hashComparerStub } = mockSut()
     jest.spyOn(hashComparerStub, 'compare').mockReturnValueOnce(Promise.resolve(false))
-    const accessToken = await sut.auth(mockAuthentication())
+    const accessToken = await sut.execute(mockAuthentication())
     expect(accessToken).toBeNull()
   })
 
   test('Should call IEncrypter usign correct id', async () => {
     const { sut, encrypterStub } = mockSut()
     const encryptSpy = jest.spyOn(encrypterStub, 'encrypt')
-    await sut.auth(mockAuthentication())
+    await sut.execute(mockAuthentication())
     expect(encryptSpy).toHaveBeenCalledWith('any_id')
   })
 
   test('Should throw if IEncrypter throws', async () => {
     const { sut, encrypterStub } = mockSut()
     jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.auth(mockAuthentication())
+    const promise = sut.execute(mockAuthentication())
     await expect(promise).rejects.toThrow()
   })
 
   test('Should return a token on success', async () => {
     const { sut } = mockSut()
-    const accessToken = await sut.auth(mockAuthentication())
+    const accessToken = await sut.execute(mockAuthentication())
     expect(accessToken).toBe('any_token')
   })
 
   test('Should call IUpdateAccessTokenRepository usign correct values', async () => {
     const { sut, updateAccessTokenRepositoryStub } = mockSut()
     const updateAccessTokenSpy = jest.spyOn(updateAccessTokenRepositoryStub, 'updateAccessToken')
-    await sut.auth(mockAuthentication())
+    await sut.execute(mockAuthentication())
     expect(updateAccessTokenSpy).toHaveBeenCalledWith('any_id', 'any_token')
   })
 
   test('Should throw if IUpdateAccessTokenRepository throws', async () => {
     const { sut, updateAccessTokenRepositoryStub } = mockSut()
     jest.spyOn(updateAccessTokenRepositoryStub, 'updateAccessToken').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.auth(mockAuthentication())
+    const promise = sut.execute(mockAuthentication())
     await expect(promise).rejects.toThrow()
   })
 })

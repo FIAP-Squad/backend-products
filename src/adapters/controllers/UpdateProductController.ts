@@ -18,7 +18,7 @@ export class UpdateProductController implements IController {
       const error = this._validation.validate(body)
       if (error) return badRequest(error)
       const { id } = params
-      await this._usecase.update({ id, body })
+      await this._usecase.execute({ id, body })
       return noContent()
     } catch (error) {
       return serverError(error)

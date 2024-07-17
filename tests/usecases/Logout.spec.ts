@@ -28,14 +28,14 @@ describe('ILogout Usecase', () => {
   test('Should call DeleteAccesstoken with correct values', async () => {
     const { sut, deleteAccessTokenStub } = mockSut()
     const loadSpy = jest.spyOn(deleteAccessTokenStub, 'deleteAccessToken')
-    await sut.logout('any_email')
+    await sut.execute('any_email')
     expect(loadSpy).toHaveBeenCalledWith('any_email')
   })
 
   test('Should throw if deleteAccessTokenStubRepository throws', async () => {
     const { sut, deleteAccessTokenStub } = mockSut()
     jest.spyOn(deleteAccessTokenStub, 'deleteAccessToken').mockReturnValueOnce(Promise.reject(new Error()))
-    const promise = sut.logout('any_email')
+    const promise = sut.execute('any_email')
     await expect(promise).rejects.toThrow()
   })
 })

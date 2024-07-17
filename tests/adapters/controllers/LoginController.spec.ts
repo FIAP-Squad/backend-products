@@ -10,7 +10,7 @@ import {
 
 const mockAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth (authentication: AuthenticationParams): Promise<string> {
+    async execute (authentication: AuthenticationParams): Promise<string> {
       return await Promise.resolve('any_token')
     }
   }
@@ -53,7 +53,7 @@ const mockSut = (): SutTypes => {
 describe('Login IController', () => {
   test('Should call IAuthentication with correct values', async () => {
     const { sut, authenticationStub } = mockSut()
-    const authSpy = jest.spyOn(authenticationStub, 'auth')
+    const authSpy = jest.spyOn(authenticationStub, 'execute')
     await sut.handle(mockRequest())
     expect(authSpy).toHaveBeenCalledWith({
       email: 'any_email@mail.com',
@@ -63,14 +63,14 @@ describe('Login IController', () => {
 
   test('Should return 401 if invalid credentials are provided', async () => {
     const { sut, authenticationStub } = mockSut()
-    jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(Promise.resolve(''))
+    jest.spyOn(authenticationStub, 'execute').mockReturnValueOnce(Promise.resolve(''))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(unauthorized())
   })
 
   test('Should return 500 if IAuthentication throws', async () => {
     const { sut, authenticationStub } = mockSut()
-    jest.spyOn(authenticationStub, 'auth').mockReturnValue(Promise.reject(new Error()))
+    jest.spyOn(authenticationStub, 'execute').mockReturnValue(Promise.reject(new Error()))
     const response = await sut.handle(mockRequest())
     expect(response).toEqual(serverError(new Error()))
   })

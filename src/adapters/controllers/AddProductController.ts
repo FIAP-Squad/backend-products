@@ -22,7 +22,7 @@ export class AddProductController implements IController {
       const error = this._validation.validate(body)
       if (error) return badRequest(error)
       const { category, name, price, description, image } = body
-      await this._usecase.add({ category, name, price, description, image })
+      await this._usecase.execute({ category, name, price, description, image })
       return noContent()
     } catch (error) {
       return serverError(error)

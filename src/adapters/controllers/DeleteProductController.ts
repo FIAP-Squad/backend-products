@@ -14,7 +14,7 @@ export class DeleteProductController implements IController {
   async handle ({ params }: IHTTPRequest): Promise<IHTTPResponse> {
     try {
       const { id } = params
-      await this._usecase.delete(id)
+      await this._usecase.execute(id)
       return noContent()
     } catch (error) {
       return serverError(error)

@@ -6,7 +6,7 @@ import {
 
 export class UpdateOrder implements IUpdateOrder {
   constructor (private readonly _repository: IUpdateOrderRepository) { }
-  async update (params: UpdateOrderParams): Promise<void> {
+  async execute (params: UpdateOrderParams): Promise<void> {
     await this._repository.updateOrder(params)
   }
 }

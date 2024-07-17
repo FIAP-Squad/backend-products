@@ -26,7 +26,7 @@ export class SignUpController implements IController {
       const error = this._validation.validate(body)
       if (error) return badRequest(error)
       const { name, cpf, email, password, role } = body
-      const account = await this._usecase.add({
+      const account = await this._usecase.execute({
         name,
         cpf,
         email,
@@ -34,7 +34,7 @@ export class SignUpController implements IController {
         role
       })
       if (!account) return forbidden(new EmailInUse())
-      const accessToken = await this._applicationService.auth({ email, password })
+      const accessToken = await this._applicationService.execute({ email, password })
       return ok({ accessToken })
     } catch (error) {
       return serverError(error)
