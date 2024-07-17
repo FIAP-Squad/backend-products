@@ -2,7 +2,7 @@ import { type Payment } from '@/core/entities'
 
 export type UpdatePaymentParams = {
   id: string
-  body: Partial<Payment>
+  body: Pick<Payment, 'status'>
 }
 
 export interface IUpdatePayment {

@@ -1,5 +1,5 @@
 import { type Express, Router } from 'express'
-import { account, login, logout, order, product, health } from '@/main/routes'
+import { account, login, logout, order, product, health, payment } from '@/main/routes'
 
 export default (app: Express): void => {
   const router = Router()
@@ -10,4 +10,5 @@ export default (app: Express): void => {
   order(router)
   product(router)
   health(router)
+  payment(router)
 }

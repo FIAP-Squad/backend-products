@@ -84,7 +84,6 @@ describe('AddOrder Usecase', () => {
     const addPaymentStub = jest.spyOn(addPaymentRepositoryStub, 'addPayment')
     const order = mockOrderWithIds()
     await sut.add(order)
-    console.log(order.payment)
     expect(addPaymentStub).toHaveBeenCalledWith({
       status: 'pendding',
       orderId: 'any_orderId',
