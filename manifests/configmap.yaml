@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: products-configmap
+  namespace: products
+data:
+  DATABASE_URL: "mysql://root:root@products_db:3306/db" # CHANGE TO RDS ENDPOINT
+  USERS: users-service.users.svc.cluster.local
+  PAYMENT: payment-service.products.svc.cluster.local
+  ORDERS: orders-service.orders.svc.cluster.local
