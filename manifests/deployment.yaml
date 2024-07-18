@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: products-microservice
+  name: products-microservice
+  namespace: products
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products-microservice
+  template:
+    metadata:
+      labels:
+        app: products-microservice
+    spec:
+      containers:
+      - image: 43567/backend-products:latest
+        name: products-container
+        ports:
+        - containerPort: 5050
+        envFrom:
+        - configMapRef:
+            name: products-configmap
+      imagePullSecrets:
+        - name: backend-registry-secret
