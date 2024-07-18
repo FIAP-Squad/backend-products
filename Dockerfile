@@ -19,7 +19,7 @@
 # CMD ["node", "dist/main/server.js"]
 
 FROM node:18
-WORKDIR /usr/src/backend-payment
+WORKDIR /usr/src/backend-products
 COPY backend-products/package*.json ./
 RUN npm i
 COPY backend-products/ .
