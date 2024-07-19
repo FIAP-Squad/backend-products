@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/your-image-name:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/backend-products:latest
 
       - name: Logout from Docker Hub
         run: docker logout
